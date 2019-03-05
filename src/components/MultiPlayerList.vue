@@ -11,17 +11,22 @@
     </ul>
     <!--
       kebab-case is recommended in dom templates because works better with html case insensitivity,
-      but kebab-case will match with PascalCase-named registered components too.
+      but kebab-case will match with PascalCase-named registered components too, so component could
+      be named PlayerList, and using <player-list> here will still work.
       An empty element is recommended (eg <player-line></player-line>) as it indicates the element does/will
-      have content ... unless being compiled by babel+webpack, which can sort this out for you.
+      have content.  However if being compiled by babel+webpack a closed element (eg <player-line/>) can be
+      used as the transpiliation will sort it out for you.
      -->
     <player-line/>
+    <button @click="addPlayer">Add another kicker (via event to parent which updates props)</button>
+    <button @click="addPlayerViaBus">Add another kicker (via event bus)</button>
   </div>
 </template>
 
 <script>
 // import local components
 import PlayerLine from './PlayerLine.vue'
+import {bus} from '../main.js'
 
 // export a default object from this file... ES6
 export default {
@@ -30,22 +35,48 @@ export default {
     'player-line': PlayerLine
   },
 
-  // same as data: function()... ES6
+  // Announce we want to receive props (from parent component) - name is same as would be in data.
+  // In this case validation is used to indictae eg prop is mandatory and must be an array.
+  // Alternatively, without validation, an abreviated syntax of  props: ['prop1', 'prop2']  can be used.
+  //
+  // When a JS reference type (array or object) is passed liked this, it is a reference to the object in the
+  // parent (cf a JS primitive type like boolean, string or number) - so beware when changing contained values.
+  props: {
+    kickers: {
+      required: true,
+      type: Array
+    }
+  },
+
+  // shorthand for  data: function()...  ES6
   data () {
     return {
-      kickers: [
-        {
-          id: 1,
-          name: 'jo',
-          stat: 16.8
-        },
-        {
-          id: 2,
-          name: 'jen',
-          stat: 15.3
-        }
-      ]
+      // kickers: []   getting this from props
     }
+  },
+
+  methods: {
+    addPlayer() {
+      // emit an event up to the parent
+      this.$emit('addPlayer', 'New guy');
+    },
+    addPlayerViaBus() {
+      // emit an event via the bus (created in main.js)
+      bus.$emit('addPlayerViaBus', 'New gal');
+    }
+  },
+
+  // a life-cycle hook; called when this object is created
+  created() {
+    // listen to an event on the bus
+    // use fat arrow function ... ES6
+    bus.$on('addPlayerViaBus', (data) => {
+      this.kickers.push({
+        id: this.kickers.length + 1,
+        name: data,
+        stat: 14.5
+      })
+    })
   }
 }
 </script>
