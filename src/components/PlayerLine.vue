@@ -6,6 +6,10 @@
     <span class="label">k</span><span class="stat">{{k}}</span>
     <span class="label">h</span><span class="stat">{{h}}</span>
     <span class="label">m</span><span class="stat">{{m}}</span>
+    <!-- this is the 'slot' where the template passed to this component (from MultiPlayerList.vue) gets rendered. -->
+    <slot name='A'></slot>
+    Boo!
+    <slot name='B'></slot>
   </div>
 </template>
 
@@ -24,6 +28,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.player-line {
+  border: thin gray solid;
+}
 .label {
   color: red;
 }

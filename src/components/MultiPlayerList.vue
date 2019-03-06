@@ -9,6 +9,7 @@
           {{k.name}} - {{k.stat}}
        </li>
     </ul>
+
     <!--
       kebab-case is recommended in dom templates because works better with html case insensitivity,
       but kebab-case will match with PascalCase-named registered components too, so component could
@@ -17,7 +18,41 @@
       have content.  However if being compiled by babel+webpack a closed element (eg <player-line/>) can be
       used as the transpiliation will sort it out for you.
      -->
-    <player-line/>
+    <player-line>
+      <!--
+        content can be placed into 'slots' in the player-line component.
+        data/props can be bound in the rendered slots, but comes from the context of the parent component.
+        this can be useful if player-line is some kind of generic layout compenent
+      -->
+      <div slot='A'>
+        Slot A content.
+      </div>
+      <div slot='B'>
+        Slot B content - resolved from parent component: {{colour}}
+      </div>
+    </player-line>
+
+    <!--
+      dynamically render components according to some condition.
+      (Could also use v-bind:is="nameOfComponent" if nameOfComponent resolves to a component name)
+      a component that was displayed but then gets destroyed here will have any changed data
+      also destroyed (eg local 'data' or content of input fields), unless wrapped in <keep-alive>
+    -->
+    <component is='player-line-green' v-if='colour == "Green"'></component>
+    <keep-alive>
+      <component is='player-line-blue' v-if='colour == "Blue"'></component>
+    </keep-alive>
+
+    <!--
+      two-way binding of element to data is done with v-model (not very flux though is it)
+      model 'modifiers' can be used to eg only bind to model lazily; ie as field is exitted
+
+      (Aside: events also have modifiers...)
+    -->
+    <p>Colour: <input type="text" v-model="colour"/> You typed: {{colour}}</p>
+    <p>Laze Colour: <input type="text" v-model.lazy="lazyColour"/> You typed: {{lazyColour}}</p>
+
+    <button @click="changeColour">Change Colour</button>
     <button @click="addPlayer">Add another kicker (via event to parent which updates props)</button>
     <button @click="addPlayerViaBus">Add another kicker (via event bus)</button>
   </div>
@@ -26,13 +61,17 @@
 <script>
 // import local components
 import PlayerLine from './PlayerLine.vue'
+import PlayerLineGreen from './PlayerLineGreen.vue'
+import PlayerLineBlue from './PlayerLineBlue.vue'
 import {bus} from '../main.js'
 
 // export a default object from this file... ES6
 export default {
   // register local components
   components: {
-    'player-line': PlayerLine
+    'player-line': PlayerLine,
+    'player-line-green': PlayerLineGreen,
+    'player-line-blue': PlayerLineBlue
   },
 
   // Announce we want to receive props (from parent component) - name is same as would be in data.
@@ -41,6 +80,8 @@ export default {
   //
   // When a JS reference type (array or object) is passed liked this, it is a reference to the object in the
   // parent (cf a JS primitive type like boolean, string or number) - so beware when changing contained values.
+  //
+  // see App.vue for where this props is passed from.
   props: {
     kickers: {
       required: true,
@@ -51,11 +92,17 @@ export default {
   // shorthand for  data: function()...  ES6
   data () {
     return {
-      // kickers: []   getting this from props
+      // kickers: [],   getting this from props
+      colour: 'Green',
+      lazyColour: ''
     }
   },
 
   methods: {
+    changeColour() {
+      // emit an event up to the parent
+      this.colour = (this.colour == 'Blue') ? 'Green' : 'Blue';
+    },
     addPlayer() {
       // emit an event up to the parent
       this.$emit('addPlayer', 'New guy');
@@ -94,7 +141,7 @@ export default {
 -->
 <style scoped lang="scss">
 .mpl {
-  background-color: blue;
+  background-color: lightblue;
 }
 
 ul.mpl-list {
