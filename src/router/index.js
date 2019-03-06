@@ -12,7 +12,8 @@ export default new Router({
       component: Drafting
     },
     {
-      path: '/sandbox',
+      path: '/sandbox/:param1',
+      props: true,
       component: Sandbox
     }
   ]

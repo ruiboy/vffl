@@ -3,10 +3,10 @@
     <h1>vffl</h1>
     <ul>
       <li>
-        <router-link to="drafting">Drafting</router-link>
+        <router-link to="/drafting">Drafting</router-link>
       </li>
       <li>
-        <router-link to="sandbox">Sandbox</router-link>
+        <router-link to="/sandbox/value123">Sandbox</router-link>
       </li>
     </ul>
   </div>
