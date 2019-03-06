@@ -1,17 +1,14 @@
 <template>
   <div class="header">
-    <h1>{{title}}</h1>
+    <h1>vffl</h1>
+    <ul>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="mpl">MPL</router-link></li>
+    </ul>
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      title: 'vffl - draft day'
-    }
-  }
-}
 </script>
 
 <style scoped lang="scss">

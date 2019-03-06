@@ -1,11 +1,8 @@
 <template>
   <div id="app">
     <app-header/>
-    <!--
-      passing props to component: pass kickers as kickers
-      listening for events from component: listen for addPlayer and call addPlayersToKickers
-     -->
-    <multi-player-list v-bind:kickers="kickers" v-on:addPlayer="addPlayerToKickers($event)"/>
+    <!-- router components get rendered here. see router/index.js -->
+    <router-view/>
   </div>
 </template>
 
