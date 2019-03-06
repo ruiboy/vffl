@@ -1,6 +1,6 @@
 <!-- a Vue component consists of a template, a Vue 'class' (script), and style -->
 <template>
-  <div class="player-line">
+  <div class="sandbox-player-line">
     <span>Player line BLUE</span>
     <input type="text"/>
   </div>
@@ -10,7 +10,7 @@
 </script>
 
 <style scoped lang="scss">
-.player-line {
-  border: thick blue solid;
-}
+  .sandbox-player-line {
+    border: thick blue solid;
+  }
 </style>

@@ -8,7 +8,7 @@
 </script>
 
 <style scoped lang="scss">
-.drafting.h1 {
-  padding: 3px;
-}
+  .drafting.h1 {
+    padding: 3px;
+  }
 </style>
