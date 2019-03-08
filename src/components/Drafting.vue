@@ -1,7 +1,19 @@
 <template>
   <div class="drafting">
     <h1>gonna do some drafting</h1>
-    <p> Ruiboys: {{ruiboys}} </p>
+    <div>
+      <!--{{$store.getters.getGoalies}}-->
+      {{goalies}}
+      x
+      {{$store.state.goalies}}
+      y
+      {{$store.getters.getGoaliesPlus}}
+    </div>
+    <hr />
+    <button @click="$store.dispatch('loadTeamData')">Get Team Data</button>
+    <h1 v-if="$store.state.loadingStatus">Loading</h1>
+    <p> {{$store.state.teamData}} </p>
+    <hr />
     <p> Bitcoin: {{bitcoin}} </p>
   </div>
 </template>
@@ -12,16 +24,13 @@
   export default {
     data () {
       return {
-        ruiboys: '',
-        bitcoin: ''
+        teamData: '',
+        bitcoin: '',
+        goalies: 'peter carey'
       }
     },
 
     mounted () {
-      axios
-        .get('http://localhost:8090/drafting/getTeam/Ruiboys')
-        .then(response => (this.ruiboys = response))
-        .catch(error => console.log(error));
       axios
         .get('https://api.coindesk.com/v1/bpi/currentprice.json')
         .then(response => (this.bitcoin = response))
