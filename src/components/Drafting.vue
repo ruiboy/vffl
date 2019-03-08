@@ -2,7 +2,6 @@
   <div class="drafting">
     <h1>gonna do some drafting</h1>
     <div>
-      <!--{{$store.getters.getGoalies}}-->
       {{goalies}}
       x
       {{$store.state.module1.goalies}}
@@ -10,7 +9,7 @@
       {{getGoaliesPlus}}
     </div>
     <hr/>
-    <button @click="loadTeamData">Get Team Data</button>
+    <button @click="loadTeamData('Ruiboys')">Get Team Data</button>
     <h1 v-if="loadingStatus">Loading</h1>
     <p> {{teamData}} </p>
   </div>
@@ -29,18 +28,21 @@
     },
 
     methods: {
-      // make use of mapActions helper and ES6 spread operator to map actions
+      // make use of mapActions helper and ES6 spread operator to map actions in store to local methods
+      // this way, the template can just deal with local stuff, and here we can map the local stuff to whatever...
+      // the mapActions call returns functions which get 'spread' (added) in to the containing 'methods' object
       ...mapActions([
         'loadTeamData' // map `this.loadTeamData()` to `this.$store.dispatch('loadTeamData')`
       ])
     },
 
+    // use computed properties to reach out to store and get stuff
     computed: {
       ...mapGetters([
-        'getGoaliesPlus'
+        'getGoaliesPlus'   // map `this.getGoaliesPlus` to `this.$store.getters.getGoaliesPlus`
       ]),
       ...mapState({
-        teamData: state => state.module1.teamData, // map to state in module1
+        teamData: state => state.module1.teamData,   // map `teamData` to `this.$store.state.module1.teamData`
         loadingStatus: state => state.module1.loadingStatus
       })
     }
