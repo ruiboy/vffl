@@ -63,6 +63,10 @@
     <button @click="changeColour">Change Colour</button>
     <button @click="addPlayer">Add another kicker (via event to parent which updates props)</button>
     <button @click="addPlayerViaBus">Add another kicker (via event bus)</button>
+
+    <!-- async data -->
+    <hr />
+    <p> Bitcoin: {{bitcoin}} </p>
   </div>
 </template>
 
@@ -77,6 +81,9 @@
   // eg     import {bus} from '../main.js'         but created here for the sake of demonstration only
   import Vue from "vue"
   export const bus = new Vue()
+
+  // import helpers
+  import axios from "axios"
 
   // export a default object from this file... ES6
   export default {
@@ -108,7 +115,8 @@
         // kickers: [],   getting this from props
         colour: 'Green',
         lazyColour: '',
-        quarks: []
+        quarks: [],
+        bitcoin: ''
       }
     },
 
@@ -145,6 +153,14 @@
           stat: 14.5
         })
       })
+    },
+
+    mounted () {
+      // axios (or Fetch API) can be used for async data loading
+      axios
+        .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        .then(response => (this.bitcoin = response))
+        .catch(error => console.log(error));
     }
   }
 </script>

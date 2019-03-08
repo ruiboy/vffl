@@ -6,6 +6,7 @@ import store from "./store";
 
 new Vue({
   el: '#app',
+  // defining these things here mean they get passed to all child components, accessible as $router or $store...
   router,
   store,
   render: h => h(App)

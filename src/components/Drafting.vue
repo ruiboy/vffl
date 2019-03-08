@@ -5,42 +5,47 @@
       <!--{{$store.getters.getGoalies}}-->
       {{goalies}}
       x
-      {{$store.state.goalies}}
+      {{$store.state.module1.goalies}}
       y
-      {{$store.getters.getGoaliesPlus}}
+      {{getGoaliesPlus}}
     </div>
-    <hr />
-    <button @click="$store.dispatch('loadTeamData')">Get Team Data</button>
-    <h1 v-if="$store.state.loadingStatus">Loading</h1>
-    <p> {{$store.state.teamData}} </p>
-    <hr />
-    <p> Bitcoin: {{bitcoin}} </p>
+    <hr/>
+    <button @click="loadTeamData">Get Team Data</button>
+    <h1 v-if="loadingStatus">Loading</h1>
+    <p> {{teamData}} </p>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
+  import {mapActions} from 'vuex'
+  import {mapGetters} from 'vuex'
+  import {mapState} from 'vuex'
 
   export default {
     data () {
       return {
-        teamData: '',
-        bitcoin: '',
         goalies: 'peter carey'
       }
     },
 
-    mounted () {
-      axios
-        .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        .then(response => (this.bitcoin = response))
-        .catch(error => console.log(error));
+    methods: {
+      // make use of mapActions helper and ES6 spread operator to map actions
+      ...mapActions([
+        'loadTeamData' // map `this.loadTeamData()` to `this.$store.dispatch('loadTeamData')`
+      ])
+    },
+
+    computed: {
+      ...mapGetters([
+        'getGoaliesPlus'
+      ]),
+      ...mapState({
+        teamData: state => state.module1.teamData, // map to state in module1
+        loadingStatus: state => state.module1.loadingStatus
+      })
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .drafting.h1 {
-    padding: 3px;
-  }
 </style>
