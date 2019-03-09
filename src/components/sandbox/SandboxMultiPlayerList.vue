@@ -2,11 +2,24 @@
 <template>
   <div class="mpl">
     <ul class="mpl-list">
-      <!-- recommended to split mutli-attrib tags over multiple lines -->
+      <!--
+        use v-for to loop arrays
+        Vue does some optimization by 'patching' dom elements rather than reordering them if the order of items
+        in the array changes.  Providing a key (eg unique id) for each item allows Vue to keep track of them.
+        So provide a key whenever possible, unless the contents of the render are dead simple and barely change.
+        (style guide recommends to split mutli-attrib tags over multiple lines)
+      -->
       <li
         v-for="k in kickers"
         :key="k.id">
-        {{k.name}} - {{k.stat}}
+        {{k.name}} -- {{k.stat}}
+      </li>
+    </ul>
+
+    <!-- can also use v-for to loop the properties of an object -->
+    <ul class="mpl-list">
+      <li v-for="(value, key) in kickers[0]">
+        {{key}} -- {{value}}
       </li>
     </ul>
 
