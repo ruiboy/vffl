@@ -55,8 +55,10 @@ const module1 = {
 }
 
 export default new Vuex.Store({
-  strict: true,   // this will make sure that we don't change state except via mutations
-                  // eg if an 'action' changes state we will get a runtime error slapping us on the wrist
+  // strict: will make sure that we don't change state except via mutations
+  // eg if an 'action' changes state we will get a runtime error slapping us on the wrist
+  // however, this is quite expensive (a synchronous deep watcher on the state tree), so only enable in develop
+  strict: process.env.NODE_ENV !== 'production',
   modules: {
     module1: module1
   }

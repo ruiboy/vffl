@@ -10,7 +10,7 @@
     </div>
     <hr/>
     <button @click="loadTeamData('Ruiboys')">Get Team Data</button>
-    <h1 v-if="loadingStatus">Loading</h1>
+    <h1 v-show="loadingStatus">Loading</h1>
     <p> {{teamData}} </p>
   </div>
 </template>

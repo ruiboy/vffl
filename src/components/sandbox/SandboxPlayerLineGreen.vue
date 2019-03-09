@@ -3,6 +3,7 @@
   <div class="sandbox-player-line">
     <span>Player line GREEN</span>
     <input type="text"/>
+    <slot></slot>
   </div>
 </template>
 

@@ -35,13 +35,23 @@
     <!--
       dynamically render components according to some condition.
       (Could also use v-bind:is="nameOfComponent" if nameOfComponent resolves to a component name)
-      a component that was displayed but then gets destroyed here will have any changed data
-      also destroyed (eg local 'data' or content of input fields), unless wrapped in <keep-alive>
+
+      v-if: is lazy and will only render component when condition first becomes true
+      when condition becomes false again v-if will destroy the component; it will have any changed data
+       also destroyed (eg local 'data' or content of input fields); prevent this using <keep-alive>
+
+      v-show: conversely, v-show will render component initially and will never destroy it; state is always kept
+
+      Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show
+      if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.
     -->
-    <component is='sandbox-player-line-green' v-if='colour == "Green"'></component>
+    <component is='sandbox-player-line-green' v-if='colour == "Green"'>v-if; no keep-alive (data will be lost)</component>
     <keep-alive>
-      <component is='sandbox-player-line-blue' v-if='colour == "Blue"'></component>
+      <component is='sandbox-player-line-blue' v-if='colour == "Blue"'>v-if; keep-alive</component>
     </keep-alive>
+
+    <component is='sandbox-player-line-green' v-show='colour == "Green"'>v-show</component>
+    <component is='sandbox-player-line-blue' v-show='colour == "Blue"'>v-show</component>
 
     <!--
       two-way binding of element to data is done with v-model (not very flux though is it)
@@ -65,7 +75,7 @@
     <button @click="addPlayerViaBus">Add another kicker (via event bus)</button>
 
     <!-- async data -->
-    <hr />
+    <hr/>
     <p> Bitcoin: {{bitcoin}} </p>
   </div>
 </template>
