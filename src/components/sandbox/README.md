@@ -4,6 +4,37 @@ So, me, look first at SandboxMultiPlayerList.vue.
 
 Also look here, right here: 
 
+# axios
+
+axios wraps async responses like this:
+
+```JSON
+{
+  "data": {
+    "eg REST response goes here": "which may be a JSON object or array or value"
+  },
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "content-type": "application/json;charset=UTF-8"
+  },
+  "config": {
+    "transformRequest": {},
+    "transformResponse": {},
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "headers": {
+      "Accept": "application/json, text/plain, */*"
+    },
+    "method": "get",
+    "url": "http://localhost:8090/drafting/getAllPlayers"
+  },
+  "request": {}
+}
+```
+
 # vuex
 
 ```

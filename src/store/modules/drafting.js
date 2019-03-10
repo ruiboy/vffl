@@ -3,39 +3,38 @@ import axios from "axios";
 export const drafting = {
   state: {
     loadingStatus: false,
-    teamData: '',
-    goalies: 'ken farmer'
+    players: []
   },
 
   mutations: {
     SET_LOADING_STATUS(state, status) {
       state.loadingStatus = status
     },
-    SET_TEAM_DATA(state, teamData) {
-      state.teamData = teamData
+    SET_PLAYERS(state, players) {
+      state.players = players
     }
   },
 
   actions: {
-    loadTeamData(context, payload) {
+    loadDraftData(context) {
       context.commit('SET_LOADING_STATUS', true)
       axios
-        .get('http://localhost:8090/drafting/getTeam/' + payload)
+        .get('http://localhost:8090/drafting/getAllPlayers')
         .then(response => {
           context.commit('SET_LOADING_STATUS', false)
-          context.commit('SET_TEAM_DATA', response)
+          context.commit('SET_PLAYERS', response.data)
         })
         .catch(error => {
           context.commit('SET_LOADING_STATUS', false)
-          context.commit('SET_TEAM_DATA', 'error loading data')
+          context.commit('SET_PLAYERS', [])
           console.log(error)
         })
     }
   },
 
   getters: {
-    getGoaliesPlus(state) {
-      return state.goalies + " for the win"
+    getKickers(state) {
+      return [...state.players].sort((a,b) => (a.kicks > b.kicks) ? -1 : (a.kicks < b.kicks) ? 1 : 0);
     }
   }
 }
