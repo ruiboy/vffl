@@ -46,7 +46,9 @@ new Vue( {                       new Vuex.Store({
 })
 ```
 
-## sample store
+## samples
+ 
+### sample store
 
 ```ecmascript 6
 // central store for vuex
@@ -114,6 +116,63 @@ export default new Vuex.Store({
     module1: module1
   }
 });
+```
+
+### sample component
+
+```vue
+<template>
+  <div class="drafting">
+    <div>
+      {{$store.state.drafting.goalies}}
+      {{getGoaliesPlus}}
+    </div>
+    <hr/>
+    <button @click="loadTeamData('Ruiboys')">Get Team Data</button>
+    <h1 v-show="loadingStatus">Loading</h1>
+    <p> {{teamData}} </p>
+  </div>
+</template>
+
+<script>
+  import {mapActions} from 'vuex'
+  import {mapGetters} from 'vuex'
+  import {mapState} from 'vuex'
+  export default {
+    data () {
+      return {
+        goalies: 'peter carey'
+      }
+    },
+    methods: {
+      // make use of mapActions helper and ES6 spread operator to map actions in store to local methods
+      // this way, the template can just deal with local stuff, and here we can map the local stuff to whatever...
+      // the mapActions call returns functions which get 'spread' (added) in to the containing 'methods' object
+      ...mapActions([
+        'loadTeamData' // map `this.loadTeamData()` to `this.$store.dispatch('loadTeamData')`
+      ])
+    },
+    // use computed properties to reach out to store and get stuff
+    computed: {
+      // to map store getters local computeds could do:
+      //    getGoaliesPlus() {
+      //      return this.$store.getters.getGoaliesPlus
+      //    }
+      // or easier:
+      //    ...mapGetters({
+      //      getGoaliesPlus: 'getGoaliesPlus'
+      //    })
+      // or easier still:
+      ...mapGetters([
+        'getGoaliesPlus'   // map `this.getGoaliesPlus` to `this.$store.getters.getGoaliesPlus`
+      ]),
+      ...mapState({
+        teamData: state => state.drafting.teamData,   // map `teamData` to `this.$store.state.drafting.teamData`
+        loadingStatus: state => state.drafting.loadingStatus
+      })
+    }
+  }
+</script>
 ```
 
 ## app structure

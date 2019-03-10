@@ -1,0 +1,28 @@
+<template>
+  <div class="player">
+    <ul>
+      <li v-for="(value, key) in player">
+        {{key}}: {{value}}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  import {mapState} from 'vuex'
+
+  export default {
+    props: {
+      player: {
+        required: true,
+        type: Object
+      }
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  .player {
+    border: thin black dashed;
+  }
+</style>

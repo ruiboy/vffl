@@ -35,6 +35,9 @@ export const drafting = {
   getters: {
     getKickers(state) {
       return [...state.players].sort((a,b) => (a.kicks > b.kicks) ? -1 : (a.kicks < b.kicks) ? 1 : 0);
+    },
+    getHandballers(state) {
+      return [...state.players].sort((a,b) => (a.handballs > b.handballs) ? -1 : (a.handballs < b.handballs) ? 1 : 0);
     }
   }
 }
