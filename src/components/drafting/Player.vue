@@ -14,7 +14,7 @@
   export default {
     props: {
       player: {
-        required: true,
+        required: false,
         type: Object
       }
     }

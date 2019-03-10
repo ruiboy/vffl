@@ -2,8 +2,8 @@
   <div class="player-list">
     <h1>{{ title }}</h1>
     <ul>
-      <li v-for="p in players" :key="p.id" class="player">
-        <span class="name">{{p.name}}</span>
+      <li v-for="p in players" :key="p.id" class="player" @click="selectPlayer(p)">
+        <span class="name" v-bind:class="{selected: selPlayer === p}">{{p.name}}</span>
         <span class="aflClub">({{p.aflClub.substring(0, 4)}})</span>
         <span class="stats">
           <span class="k">{{p.kicks / 10}}</span>
@@ -25,9 +25,24 @@
   import {mapGetters} from 'vuex'
 
   export default {
+    props: {
+      selPlayer: {
+        required: false,
+        type: Object
+      }
+    },
+
     data () {
       return {
         title: 'Handballs'
+      }
+    },
+
+    methods: {
+      selectPlayer(payload)
+      {
+        // emit an event up to the parent
+        this.$emit('selectPlayer', payload);
       }
     },
 
@@ -75,5 +90,9 @@
 
   .games {
     font-weight: bold;
+  }
+
+  .selected {
+    background-color: crimson;
   }
 </style>
