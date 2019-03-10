@@ -4,7 +4,7 @@
     <div>
       {{goalies}}
       x
-      {{$store.state.module1.goalies}}
+      {{$store.state.drafting.goalies}}
       y
       {{getGoaliesPlus}}
     </div>
@@ -42,8 +42,8 @@
         'getGoaliesPlus'   // map `this.getGoaliesPlus` to `this.$store.getters.getGoaliesPlus`
       ]),
       ...mapState({
-        teamData: state => state.module1.teamData,   // map `teamData` to `this.$store.state.module1.teamData`
-        loadingStatus: state => state.module1.loadingStatus
+        teamData: state => state.drafting.teamData,   // map `teamData` to `this.$store.state.drafting.teamData`
+        loadingStatus: state => state.drafting.loadingStatus
       })
     }
   }

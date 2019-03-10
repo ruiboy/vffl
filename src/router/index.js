@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Drafting from "../components/Drafting";
+import Drafting from "../components/drafting/Drafting";
 import Sandbox from "../components/sandbox/SandboxApp";
 
 Vue.use(Router)
