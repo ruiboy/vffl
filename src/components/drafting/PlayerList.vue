@@ -8,7 +8,7 @@
           :id="highlightPosition + '--' + p.id"
           :key="p.id"
           @click="selectPlayer(p)">
-        <td class="name" :class="{selected: selectedPlayer === p}">{{p.name.substring(0, 20)}}</td>
+        <td class="name" :class="{selected: selectedPlayer === p}">{{p.name}}</td>
         <td class="aflClub">({{p.aflClub.substring(0, 4)}})</td>
         <td class="k" :class="{highlight: highlightPosition == 'k'}">{{p.kicks / 10}}</td>
         <td class="h" :class="{highlight: highlightPosition == 'h'}">{{p.handballs / 10}}</td>
@@ -54,6 +54,23 @@
       ...mapState({
         selectedPlayer: state => state.drafting.selectedPlayer,
       })
+    },
+
+    mounted () {
+      // scroll selected players in to view, but only if neede
+      this.$store.subscribe((mutation, state) => {
+        if (mutation.type == 'SET_SELECTED_PLAYER') {
+          var el = document.getElementById(this.highlightPosition + '--' + state.drafting.selectedPlayer.id)
+          var rect = el.getBoundingClientRect();
+          console.log(this.highlightPosition + ' ' + rect.top + ' '  + rect.y)
+          if (rect.bottom > window.innerHeight) {
+            el.scrollIntoView(false);
+          }
+          if (rect.top < 0) {
+            el.scrollIntoView();
+          }
+        }
+      })
     }
   }
 </script>
@@ -69,6 +86,7 @@
   }
 
   .player-list tbody {
+    // make only the table body scroll within a view port
     display: block;
     width: 300px;
     height: 330px;
@@ -86,5 +104,21 @@
 
   .selected {
     background-color: crimson;
+  }
+
+  // three selectors below add row numbers at start of each table row
+  .player-list table {
+    counter-reset: rowNumber;
+  }
+
+  .player-list table tr {
+    counter-increment: rowNumber;
+  }
+
+  .player-list table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+    font-size: 0.5em;
   }
 </style>
