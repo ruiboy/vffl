@@ -5,18 +5,18 @@
       <tbody>
       <tr class="player"
           v-for="p in players"
-          :id="highlightPosition + '--' + p.id"
+          :id="position + '--' + p.id"
           :key="p.id"
           @click="selectPlayer(p)">
         <td class="name" :class="{selected: selectedPlayer === p}">{{p.name}}</td>
-        <td class="aflClub">({{p.aflClub.substring(0, 4)}})</td>
-        <td class="k" :class="{highlight: highlightPosition == 'k'}">{{p.kicks / 10}}</td>
-        <td class="h" :class="{highlight: highlightPosition == 'h'}">{{p.handballs / 10}}</td>
-        <td class="m" :class="{highlight: highlightPosition == 'm'}">{{p.marks / 10}}</td>
-        <td class="r" :class="{highlight: highlightPosition == 'r'}">{{p.hitouts / 10}}</td>
-        <td class="t" :class="{highlight: highlightPosition == 't'}">{{p.tackles / 10}}</td>
-        <td class="g" :class="{highlight: highlightPosition == 'g'}">{{p.goals / 10}}</td>
-        <td class="s" :class="{highlight: highlightPosition == 's'}">{{p.star / 10}}</td>
+        <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
+        <td class="k" :class="{highlight: position == 'k'}">{{p.kicks / 10}}</td>
+        <td class="h" :class="{highlight: position == 'h'}">{{p.handballs / 10}}</td>
+        <td class="m" :class="{highlight: position == 'm'}">{{p.marks / 10}}</td>
+        <td class="r" :class="{highlight: position == 'r'}">{{p.hitouts / 10}}</td>
+        <td class="t" :class="{highlight: position == 't'}">{{p.tackles / 10}}</td>
+        <td class="g" :class="{highlight: position == 'g'}">{{p.goals / 10}}</td>
+        <td class="s" :class="{highlight: position == 's'}">{{p.star / 10}}</td>
         <td class="games">{{p.played}}</td>
       </tr>
       </tbody>
@@ -33,7 +33,7 @@
         required: true,
         type: String
       },
-      highlightPosition: {
+      position: {
         required: true,
         type: String
       },
@@ -60,9 +60,8 @@
       // scroll selected players in to view, but only if neede
       this.$store.subscribe((mutation, state) => {
         if (mutation.type == 'SET_SELECTED_PLAYER') {
-          var el = document.getElementById(this.highlightPosition + '--' + state.drafting.selectedPlayer.id)
+          var el = document.getElementById(this.position + '--' + state.drafting.selectedPlayer.id)
           var rect = el.getBoundingClientRect();
-          console.log(this.highlightPosition + ' ' + rect.top + ' '  + rect.y)
           if (rect.bottom > window.innerHeight) {
             el.scrollIntoView(false);
           }

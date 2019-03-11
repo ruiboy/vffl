@@ -3,37 +3,37 @@
     <h1 v-show="loadingStatus">Loading...</h1>
     <player-list
       :title="'Kicks'"
-      :highlightPosition="'k'"
+      :position="'k'"
       :players="this.$store.getters.getKickers">
     </player-list>
     <player-list
       :title="'Handballs'"
-      :highlightPosition="'h'"
+      :position="'h'"
       :players="this.$store.getters.getHandballers">
     </player-list>
     <player-list
       :title="'Marks'"
-      :highlightPosition="'m'"
+      :position="'m'"
       :players="this.$store.getters.getMarkers">
     </player-list>
     <player-list
       :title="'Hitouts'"
-      :highlightPosition="'r'"
+      :position="'r'"
       :players="this.$store.getters.getRuckmen">
     </player-list>
     <player-list
       :title="'Tackles'"
-      :highlightPosition="'t'"
+      :position="'t'"
       :players="this.$store.getters.getTacklers">
     </player-list>
     <player-list
       :title="'Goals'"
-      :highlightPosition="'g'"
+      :position="'g'"
       :players="this.$store.getters.getGoalKickers">
     </player-list>
     <player-list
       :title="'Stars'"
-      :highlightPosition="'s'"
+      :position="'s'"
       :players="this.$store.getters.getStars">
     </player-list>
     <player
@@ -46,7 +46,6 @@
 <script>
   import PlayerList from './PlayerList.vue'
   import Player from './Player.vue'
-  import {mapActions} from 'vuex'
   import {mapState} from 'vuex'
 
   export default {
