@@ -1,18 +1,50 @@
 <template>
   <div class="drafting">
-    <button @click="loadDraftData">Refresh</button>
-    <h1 v-show="loadingStatus">Loading</h1>
-    <player-list></player-list>
-    <player-list-2></player-list-2>
+    <h1 v-show="loadingStatus">Loading...</h1>
+    <player-list
+      :title="'Kicks'"
+      :highlightPosition="'k'"
+      :players="this.$store.getters.getKickers">
+    </player-list>
+    <player-list
+      :title="'Handballs'"
+      :highlightPosition="'h'"
+      :players="this.$store.getters.getHandballers">
+    </player-list>
+    <player-list
+      :title="'Marks'"
+      :highlightPosition="'m'"
+      :players="this.$store.getters.getMarkers">
+    </player-list>
+    <player-list
+      :title="'Hitouts'"
+      :highlightPosition="'r'"
+      :players="this.$store.getters.getRuckmen">
+    </player-list>
+    <player-list
+      :title="'Tackles'"
+      :highlightPosition="'t'"
+      :players="this.$store.getters.getTacklers">
+    </player-list>
+    <player-list
+      :title="'Goals'"
+      :highlightPosition="'g'"
+      :players="this.$store.getters.getGoalKickers">
+    </player-list>
+    <player-list
+      :title="'Stars'"
+      :highlightPosition="'s'"
+      :players="this.$store.getters.getStars">
+    </player-list>
     <player
       v-if="selectedPlayer != null"
-      :player="selectedPlayer"></player>
+      :player="selectedPlayer">
+    </player>
   </div>
 </template>
 
 <script>
   import PlayerList from './PlayerList.vue'
-  import PlayerList2 from './PlayerList2.vue' // temp
   import Player from './Player.vue'
   import {mapActions} from 'vuex'
   import {mapState} from 'vuex'
@@ -20,14 +52,7 @@
   export default {
     components: {
       'player-list': PlayerList,
-      'player-list-2': PlayerList2,
       'player': Player
-    },
-
-    methods: {
-      ...mapActions([
-        'loadDraftData'
-      ])
     },
 
     computed: {

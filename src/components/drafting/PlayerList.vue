@@ -6,13 +6,13 @@
         <span class="name" v-bind:class="{selected: selectedPlayer === p}">{{p.name}}</span>
         <span class="aflClub">({{p.aflClub.substring(0, 4)}})</span>
         <span class="stats">
-          <span class="k highlight">{{p.kicks / 10}}</span>
-          <span class="h">{{p.handballs / 10}}</span>
-          <span class="m">{{p.marks / 10}}</span>
-          <span class="h">{{p.hitouts / 10}}</span>
-          <span class="t">{{p.tackles / 10}}</span>
-          <span class="g">{{p.goals / 10}}</span>
-          <span class="s">{{p.star / 10}}</span>
+          <span class="k" v-bind:class="{highlight: highlightPosition == 'k'}">{{p.kicks / 10}}</span>
+          <span class="h" v-bind:class="{highlight: highlightPosition == 'h'}">{{p.handballs / 10}}</span>
+          <span class="m" v-bind:class="{highlight: highlightPosition == 'm'}">{{p.marks / 10}}</span>
+          <span class="r" v-bind:class="{highlight: highlightPosition == 'r'}">{{p.hitouts / 10}}</span>
+          <span class="t" v-bind:class="{highlight: highlightPosition == 't'}">{{p.tackles / 10}}</span>
+          <span class="g" v-bind:class="{highlight: highlightPosition == 'g'}">{{p.goals / 10}}</span>
+          <span class="s" v-bind:class="{highlight: highlightPosition == 's'}">{{p.star / 10}}</span>
           <span class="games">{{p.played}}</span>
         </span>
       </li>
@@ -22,19 +22,20 @@
 
 <script>
   import {mapState} from 'vuex'
-  import {mapGetters} from 'vuex'
 
   export default {
     props: {
-      selPlayer: {
-        required: false,
+      title: {
+        required: true,
         type: Object
-      }
-    },
-
-    data () {
-      return {
-        title: 'Kicks'
+      },
+      highlightPosition: {
+        required: true,
+        type: Object
+      },
+      players: {
+        required: true,
+        type: Array
       }
     },
 
@@ -48,9 +49,6 @@
     computed: {
       ...mapState({
         selectedPlayer: state => state.drafting.selectedPlayer,
-      }),
-      ...mapGetters({
-        players: 'getKickers'
       })
     }
   }
@@ -58,19 +56,20 @@
 
 <style scoped lang="scss">
   .player-list {
+    border: thin gray solid;
   }
 
   .player-list h1 {
-    font-size: 1em;
+    font-size: 0.6em;
     margin: 0;
   }
 
   .player-list ul {
     list-style-type: none;
-    width: 300px;
     margin: 0px;
     padding: 0px;
-    height: 300px;
+    width: 300px;
+    height: 330px;
     overflow: scroll;
   }
 
@@ -88,6 +87,7 @@
 
   .highlight {
     font-weight: bold;
+    font-size: 1.2em;
   }
 
   .games {
