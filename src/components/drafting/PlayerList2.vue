@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <ul>
       <li v-for="p in players" :key="p.id" class="player" @click="selectPlayer(p)">
-        <span class="name" v-bind:class="{selected: selPlayer === p}">{{p.name}}</span>
+        <span class="name" v-bind:class="{selected: selectedPlayer === p}">{{p.name}}</span>
         <span class="aflClub">({{p.aflClub.substring(0, 4)}})</span>
         <span class="stats">
           <span class="k">{{p.kicks / 10}}</span>
@@ -41,12 +41,14 @@
     methods: {
       selectPlayer(payload)
       {
-        // emit an event up to the parent
-        this.$emit('selectPlayer', payload);
+        this.$store.dispatch('selectPlayer', payload)
       }
     },
 
     computed: {
+      ...mapState({
+        selectedPlayer: state => state.drafting.selectedPlayer,
+      }),
       ...mapGetters({
         players: 'getHandballers'
       })
