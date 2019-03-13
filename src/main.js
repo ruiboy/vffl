@@ -3,6 +3,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+// semantic-ui
+import SuiVue from 'semantic-ui-vue';
+import '../node_modules/semantic-ui-css/semantic.min.css'
+
+Vue.use(SuiVue);
 
 new Vue({
   el: '#app',
