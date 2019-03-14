@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import MultiPlayerList from './MultiPlayerList.vue'
+  import MultiPlayerList from '../multiplayerlist/MultiPlayerList.vue'
   import {mapState} from 'vuex'
 
   export default {
