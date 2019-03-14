@@ -1,5 +1,19 @@
 import axios from "axios";
 
+function savePlayer(player) {
+  axios
+    .post('http://localhost:8090/drafting/updatePlayer',
+      player,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
 export const drafting = {
   state: {
     loadingStatus: false,
@@ -23,8 +37,8 @@ export const drafting = {
       payload.player.priority = payload.value
     },
 
-    SET_PLAYER_COMMENTS(state, payload) {
-      payload.player.comments = payload.value
+    SET_PLAYER_COMMENT(state, payload) {
+      payload.player.comment = payload.value
     },
 
     SET_PLAYER_DRAFTED_BY(state, payload) {
@@ -54,23 +68,28 @@ export const drafting = {
 
     setPlayerPos(context, payload) {
       context.commit('SET_PLAYER_POSITION', payload)
+      savePlayer(payload.player)
     },
 
     setPlayerPriority(context, payload) {
       context.commit('SET_PLAYER_PRIORITY', payload)
+      savePlayer(payload.player)
     },
 
-    setPlayerComments(context, payload) {
-      context.commit('SET_PLAYER_COMMENTS', payload)
+    setPlayerComment(context, payload) {
+      context.commit('SET_PLAYER_COMMENT', payload)
+      savePlayer(payload.player)
     },
 
     setPlayerDraftedBy(context, payload) {
       context.commit('SET_PLAYER_DRAFTED_BY', payload)
+      savePlayer(payload.player)
     },
 
     setPlayerCents(context, payload) {
       context.commit('SET_PLAYER_CENTS', payload)
-    },
+      savePlayer(payload.player)
+    }
   },
 
   getters: {
@@ -79,3 +98,4 @@ export const drafting = {
     }
   }
 }
+

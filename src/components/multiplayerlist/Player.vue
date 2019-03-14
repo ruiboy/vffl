@@ -37,7 +37,7 @@
     </div>
     <div>
       Comments:
-      <textarea class="comments" v-model="comments"/>
+      <textarea class="comment" v-model.lazy="comment"/>
     </div>
     <div>
       Drafted by
@@ -106,12 +106,12 @@
         }
       },
 
-      comments: {
+      comment: {
         get () {
-          return this.player.comments
+          return this.player.comment
         },
         set (value) {
-          this.$store.dispatch('setPlayerComments', {player: this.player, value: value})
+          this.$store.dispatch('setPlayerComment', {player: this.player, value: value})
         }
       },
 
@@ -164,7 +164,7 @@
     width: 50px
   }
 
-  .comments {
+  .comment {
     width: 283px;
     height: 100px;
   }
