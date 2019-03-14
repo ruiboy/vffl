@@ -146,7 +146,6 @@
     methods: {
       changeColour()
       {
-        // emit an event up to the parent
         this.colour = (this.colour == 'Blue') ? 'Green' : 'Blue';
       }
       ,

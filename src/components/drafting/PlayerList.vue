@@ -7,7 +7,7 @@
           v-for="p in players"
           :id="position + '--' + p.id"
           :key="p.id"
-          @click="selectPlayer(p)">
+          @click="playerSelected(p)">
         <td class="name" :class="{selected: selectedPlayer === p}">{{p.name}}</td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
         <td class="k" :class="{highlight: position == 'k'}">{{p.kicks / 10}}</td>
@@ -40,36 +40,43 @@
       players: {
         required: true,
         type: Array
+      },
+      playerToSelect: {
+        required: false,
+        type: Object
+      }
+    },
+
+    data () {
+      return {
+        selectedPlayer: null
       }
     },
 
     methods: {
-      selectPlayer(payload)
-      {
-        this.$store.dispatch('selectPlayer', payload)
+      playerSelected(player) {
+        this.selectedPlayer = player
+        this.$emit('playerSelected', player);
+      },
+
+      selectAndScrollToPlayer(player) {
+        this.selectedPlayer = player
+        // scroll player in to view
+        var el = document.getElementById(this.position + '--' + player.id)
+        var rect = el.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight) {
+          el.scrollIntoView(false);
+        }
+        if (rect.top < 0) {
+          el.scrollIntoView();
+        }
       }
     },
 
-    computed: {
-      ...mapState({
-        selectedPlayer: state => state.drafting.selectedPlayer,
-      })
-    },
-
-    mounted () {
-      // scroll selected players in to view, but only if neede
-      this.$store.subscribe((mutation, state) => {
-        if (mutation.type == 'SET_SELECTED_PLAYER') {
-          var el = document.getElementById(this.position + '--' + state.drafting.selectedPlayer.id)
-          var rect = el.getBoundingClientRect();
-          if (rect.bottom > window.innerHeight) {
-            el.scrollIntoView(false);
-          }
-          if (rect.top < 0) {
-            el.scrollIntoView();
-          }
-        }
-      })
+    watch: {
+      playerToSelect (player) {
+        this.selectAndScrollToPlayer(player)
+      }
     }
   }
 </script>
