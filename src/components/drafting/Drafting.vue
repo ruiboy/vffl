@@ -1,17 +1,48 @@
 <template>
   <div class="drafting">
-    <h1 v-show="loadingStatus">Loading...</h1>
-    <multi-player-list :players="players"></multi-player-list>
+    <div class="mpl">
+      <h1 v-show="loadingStatus">Loading...</h1>
+      <multi-player-list :players="players"></multi-player-list>
+    </div>
+    <div class="clubs">
+      <drafting-club
+        :name="'THC'"
+        :players="getClubPlayers('THC')">
+      </drafting-club>
+      <drafting-club
+        :name="'Austins'"
+        :players="getClubPlayers('Austins')">
+      </drafting-club>
+      <drafting-club
+        :name="'Fred'"
+        :players="getClubPlayers('Fred')">
+      </drafting-club>
+      <drafting-club
+        :name="'Ruiboys'"
+        :players="getClubPlayers('Ruiboys')">
+      </drafting-club>
+      <drafting-club
+        :name="'Cheetahs'"
+        :players="getClubPlayers('Cheetahs')">
+      </drafting-club>
+      <drafting-club
+        :name="'Slashers'"
+        :players="getClubPlayers('Slashers')">
+      </drafting-club>
+    </div>
+    <div class="footer">Footer</div>
   </div>
 </template>
 
 <script>
   import MultiPlayerList from '../multiplayerlist/MultiPlayerList.vue'
+  import DraftingClub from './DraftingClub.vue'
   import {mapState} from 'vuex'
 
   export default {
     components: {
-      'multi-player-list': MultiPlayerList
+      'multi-player-list': MultiPlayerList,
+      "drafting-club": DraftingClub
     },
 
     computed: {
@@ -21,6 +52,12 @@
       })
     },
 
+    methods: {
+      getClubPlayers(clubName) {
+        return this.players.filter(a => a.draftedBy == clubName)
+      }
+    },
+
     mounted () {
       this.$store.dispatch('loadDraftData')
     }
@@ -28,7 +65,15 @@
 </script>
 
 <style scoped lang="scss">
-  .drafting div {
-    float: left;
+  .mpl { grid-area: mpl; }
+  .clubs { grid-area: clubs; }
+  .footer { grid-area: footer; }
+
+  .drafting {
+    display: grid;
+    grid:
+      'mpl mpl mpl mpl clubs'
+      'footer footer footer footer footer';
+    padding: 0;
   }
 </style>
