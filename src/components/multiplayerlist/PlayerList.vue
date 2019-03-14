@@ -10,9 +10,13 @@
           @click="playerSelected(p)"
           :class="{
             avoid: p.priority > 500,
-            want:  p.priority < 500,
-            other:  p.draftedBy != '' && p.draftedBy != 'Ruiboys',
-            mine: p.draftedBy == 'Ruiboys'
+            want1: p.priority == 1,
+            want2: p.priority == 2,
+            want3: p.priority == 3,
+            want4: p.priority == 4,
+            want5: p.priority == 5,
+            mine:  p.draftedBy == 'Ruiboys',
+            other: p.draftedBy != 'Ruiboys' && p.draftedBy != ''
           }">
         <td class="name" :class="{selected: selectedPlayer === p}">{{p.name}}</td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
@@ -93,7 +97,7 @@
   }
 
   .player-list h1 {
-    font-size: 0.6em;
+    font-size: 0.8em;
     margin: 0;
   }
 
@@ -106,12 +110,11 @@
   }
 
   .player td {
-    font-size: 0.6em;
+    font-size: 0.7em;
   }
 
   .highlight {
     font-weight: bold;
-    font-size: 1.2em;
   }
 
   .selected {
@@ -119,8 +122,24 @@
     color: white;
   }
 
-  .want {
-    background-color: gold;
+  .want1 {
+    background-color: #ffd711;
+  }
+
+  .want2 {
+    background-color: #ffe411;
+  }
+
+  .want3 {
+    background-color: #ffec44;
+  }
+
+  .want4 {
+    background-color: #ffef77;
+  }
+
+  .want5 {
+    background-color: #fff699;;
   }
 
   .mine {
@@ -149,6 +168,6 @@
     content: counter(rowNumber);
     min-width: 1em;
     margin-right: 0.5em;
-    font-size: 0.5em;
+    font-size: 0.6em;
   }
 </style>
