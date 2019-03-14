@@ -7,7 +7,13 @@
           v-for="p in players"
           :id="position + '--' + p.id"
           :key="p.id"
-          @click="playerSelected(p)">
+          @click="playerSelected(p)"
+          :class="{
+            avoid: p.priority > 500,
+            want:  p.priority < 500,
+            other:  p.draftedBy != '' && p.draftedBy != 'Ruiboys',
+            mine: p.draftedBy == 'Ruiboys'
+          }">
         <td class="name" :class="{selected: selectedPlayer === p}">{{p.name}}</td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
         <td class="k" :class="{highlight: position == 'k'}">{{p.kicks / 10}}</td>
@@ -109,7 +115,25 @@
   }
 
   .selected {
-    background-color: crimson;
+    background-color: darkolivegreen;
+    color: white;
+  }
+
+  .want {
+    background-color: gold;
+  }
+
+  .mine {
+    background-color: royalblue;
+    color: yellow;
+  }
+
+  .avoid {
+    background-color: lightgray;
+  }
+
+  .other {
+    background-color: darkgray;
   }
 
   // three selectors below add row numbers at start of each table row
