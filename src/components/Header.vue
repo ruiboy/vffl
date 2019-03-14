@@ -5,6 +5,24 @@
         <router-link to="/drafting">Drafting</router-link>
       </li>
       <li>
+        <router-link to="/club/Austins">Austins</router-link>
+      </li>
+      <li>
+        <router-link to="/club/Cheetahs">Cheetahs</router-link>
+      </li>
+      <li>
+        <router-link to="/club/Fred">Fred</router-link>
+      </li>
+      <li>
+        <router-link to="/club/Ruiboys">Ruiboys</router-link>
+      </li>
+      <li>
+        <router-link to="/club/Slashers">Slashers</router-link>
+      </li>
+      <li>
+        <router-link to="/club/THC">THC</router-link>
+      </li>
+      <li>
         <router-link to="/sandbox/value123">Sandbox</router-link>
       </li>
     </ul>
@@ -21,7 +39,7 @@
   }
 
   .header a {
-    color:white;
+    color: white;
   }
 
   .header > ul {
@@ -34,7 +52,7 @@
 
   .header > ul > li {
     flex-grow: 1;
-    flex-basis: 200px;
+    flex-basis: 100px;
     padding: 0px;
   }
 </style>

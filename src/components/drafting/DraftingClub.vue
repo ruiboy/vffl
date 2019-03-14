@@ -1,6 +1,6 @@
 <template>
   <div class="club">
-    <h1>{{ name }}</h1>
+    <h1><router-link :to="{path: '/club/' + name}">{{ name }}</router-link></h1>
     <ul>
       <li>Players Drafted: {{ playerCount }}</li>
       <li>Paid: {{ totalPaid }}</li>
@@ -14,7 +14,7 @@
   export default {
     props: {
       name: {
-        required: false,
+        required: true,
         type: String
       },
       players: {

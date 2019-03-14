@@ -54,7 +54,7 @@
 
     methods: {
       getClubPlayers(clubName) {
-        return this.players.filter(a => a.draftedBy == clubName)
+        return this.$store.getters.getClubPlayers(clubName)
       }
     },
 

@@ -30,5 +30,11 @@ export const drafting = {
           console.log(error)
         })
     }
+  },
+
+  getters: {
+    getClubPlayers: (state) => (clubName) => {
+      return state.players.filter(a => a.draftedBy == clubName)
+    }
   }
 }
