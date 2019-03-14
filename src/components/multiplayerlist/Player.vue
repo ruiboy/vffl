@@ -3,7 +3,7 @@
     <div class="name">{{player.name}} ({{player.aflClub}})</div>
     <div>
       Position:
-      <select class="pos" v-model="player.pos">
+      <select class="pos" v-model="pos">
         <option value=""></option>
         <option value="K">Kicks</option>
         <option value="H">Handballs</option>
@@ -14,34 +14,34 @@
         <option value="S">Star</option>
       </select>
       Priority:
-      <input class="priority" type="number" v-model="player.priority" maxlength="3"/>
+      <input class="priority" type="number" v-model="priority" maxlength="3"/>
     </div>
     <div class="pos-selectors">
-      <button @click="player.pos = 'K'">K</button>
-      <button @click="player.pos = 'H'">H</button>
-      <button @click="player.pos = 'M'">M</button>
-      <button @click="player.pos = 'R'">R</button>
-      <button @click="player.pos = 'T'">T</button>
-      <button @click="player.pos = 'G'">G</button>
-      <button @click="player.pos = 'S'">S</button>
+      <button @click="pos = 'K'">K</button>
+      <button @click="pos = 'H'">H</button>
+      <button @click="pos = 'M'">M</button>
+      <button @click="pos = 'R'">R</button>
+      <button @click="pos = 'T'">T</button>
+      <button @click="pos = 'G'">G</button>
+      <button @click="pos = 'S'">S</button>
     </div>
     <div class="priority-selectors">
-      <button @click="player.priority = 1">1</button>
-      <button @click="player.priority = 2">2</button>
-      <button @click="player.priority = 3">3</button>
-      <button @click="player.priority = 4">4</button>
-      <button @click="player.priority = 5">5</button>
-      <button @click="player.priority = 10">10</button>
-      <button @click="player.priority = 500">meh...</button>
-      <button @click="player.priority = 1000; player.pos=''">avoid</button>
+      <button @click="priority = 1">1</button>
+      <button @click="priority = 2">2</button>
+      <button @click="priority = 3">3</button>
+      <button @click="priority = 4">4</button>
+      <button @click="priority = 5">5</button>
+      <button @click="priority = 10">10</button>
+      <button @click="priority = 500">meh...</button>
+      <button @click="priority = 1000; pos=''">avoid</button>
     </div>
     <div>
       Comments:
-      <textarea class="comments" v-model="player.comments"/>
+      <textarea class="comments" v-model="comments"/>
     </div>
     <div>
       Drafted by
-      <select class="draftedBy" v-model="player.draftedBy">
+      <select class="draftedBy" v-model="draftedBy">
         <option value=""></option>
         <option value="Austins">Austins</option>
         <option value="Cheetahs">Cheetahs</option>
@@ -51,29 +51,29 @@
         <option value="THC">THC</option>
       </select>
       for
-      <input class="cents" type="number" v-model="player.cents"/>
+      <input class="cents" type="number" v-model="cents"/>
       cents
     </div>
     <div class="team-selectors">
-      <button @click="player.draftedBy = 'Austins'">Aust</button>
-      <button @click="player.draftedBy = 'Cheetahs'">Che</button>
-      <button @click="player.draftedBy = 'Fred'">Fred</button>
-      <button @click="player.draftedBy = 'Ruiboys'">Rui</button>
-      <button @click="player.draftedBy = 'Slashers'">Sla</button>
-      <button @click="player.draftedBy = 'THC'">THC</button>
+      <button @click="draftedBy = 'Austins'">Aust</button>
+      <button @click="draftedBy = 'Cheetahs'">Che</button>
+      <button @click="draftedBy = 'Fred'">Fred</button>
+      <button @click="draftedBy = 'Ruiboys'">Rui</button>
+      <button @click="draftedBy = 'Slashers'">Sla</button>
+      <button @click="draftedBy = 'THC'">THC</button>
     </div>
     <div class="money-selectors">
-      <button @click="player.cents += 10">10</button>
-      <button @click="player.cents += 20">20</button>
-      <button @click="player.cents += 30">30</button>
-      <button @click="player.cents += 40">40</button>
-      <button @click="player.cents += 50">50</button>
-      <button @click="player.cents += 60">60</button>
-      <button @click="player.cents += 70">70</button>
-      <button @click="player.cents += 80">80</button>
-      <button @click="player.cents += 90">90</button>
-      <button @click="player.cents += 100">$1</button>
-      <button @click="player.cents = 0">Clear</button>
+      <button @click="cents += 10">10</button>
+      <button @click="cents += 20">20</button>
+      <button @click="cents += 30">30</button>
+      <button @click="cents += 40">40</button>
+      <button @click="cents += 50">50</button>
+      <button @click="cents += 60">60</button>
+      <button @click="cents += 70">70</button>
+      <button @click="cents += 80">80</button>
+      <button @click="cents += 90">90</button>
+      <button @click="cents += 100">$1</button>
+      <button @click="cents = 0">Clear</button>
     </div>
   </div>
 </template>
@@ -84,6 +84,53 @@
       player: {
         required: false,
         type: Object
+      }
+    },
+
+    computed: {
+      pos: {
+        get () {
+          return this.player.pos
+        },
+        set (value) {
+          this.$store.dispatch('setPlayerPos', {player: this.player, value: value})
+        }
+      },
+
+      priority: {
+        get () {
+          return this.player.priority
+        },
+        set (value) {
+          this.$store.dispatch('setPlayerPriority', {player: this.player, value: value})
+        }
+      },
+
+      comments: {
+        get () {
+          return this.player.comments
+        },
+        set (value) {
+          this.$store.dispatch('setPlayerComments', {player: this.player, value: value})
+        }
+      },
+
+      draftedBy: {
+        get () {
+          return this.player.draftedBy
+        },
+        set (value) {
+          this.$store.dispatch('setPlayerDraftedBy', {player: this.player, value: value})
+        }
+      },
+
+      cents: {
+        get () {
+          return this.player.cents
+        },
+        set (value) {
+          this.$store.dispatch('setPlayerCents', {player: this.player, value: value})
+        }
       }
     }
   }

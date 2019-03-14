@@ -10,8 +10,29 @@ export const drafting = {
     SET_LOADING_STATUS(state, status) {
       state.loadingStatus = status
     },
+
     SET_PLAYERS(state, players) {
       state.players = players
+    },
+
+    SET_PLAYER_POSITION(state, payload) {
+      payload.player.pos = payload.value
+    },
+
+    SET_PLAYER_PRIORITY(state, payload) {
+      payload.player.priority = payload.value
+    },
+
+    SET_PLAYER_COMMENTS(state, payload) {
+      payload.player.comments = payload.value
+    },
+
+    SET_PLAYER_DRAFTED_BY(state, payload) {
+      payload.player.draftedBy = payload.value
+    },
+
+    SET_PLAYER_CENTS(state, payload) {
+      payload.player.cents = payload.value
     }
   },
 
@@ -29,7 +50,27 @@ export const drafting = {
           context.commit('SET_PLAYERS', [])
           console.log(error)
         })
-    }
+    },
+
+    setPlayerPos(context, payload) {
+      context.commit('SET_PLAYER_POSITION', payload)
+    },
+
+    setPlayerPriority(context, payload) {
+      context.commit('SET_PLAYER_PRIORITY', payload)
+    },
+
+    setPlayerComments(context, payload) {
+      context.commit('SET_PLAYER_COMMENTS', payload)
+    },
+
+    setPlayerDraftedBy(context, payload) {
+      context.commit('SET_PLAYER_DRAFTED_BY', payload)
+    },
+
+    setPlayerCents(context, payload) {
+      context.commit('SET_PLAYER_CENTS', payload)
+    },
   },
 
   getters: {
