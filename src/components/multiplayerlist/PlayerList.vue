@@ -148,7 +148,8 @@
   }
 
   .avoid {
-    background-color: lightgray;
+    background-color: #777777;
+    text-decoration: line-through;
   }
 
   .other {

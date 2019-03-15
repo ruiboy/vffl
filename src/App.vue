@@ -21,6 +21,19 @@
     padding: 0px;
   }
 
+  // custom scroll bar
+  tbody::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  tbody::-webkit-scrollbar-thumb {
+    background: darkolivegreen;
+  }
+
+  tbody::-webkit-scrollbar:horizontal {
+    display: none;
+  }
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
