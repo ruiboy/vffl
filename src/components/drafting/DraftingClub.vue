@@ -1,13 +1,24 @@
 <template>
   <div class="club">
-    <h1><router-link :to="{path: '/club/' + name}">{{ name }}</router-link></h1>
+    <h1>
+      <router-link :to="{path: '/club/' + name}">{{ name }}</router-link>
+    </h1>
     <ul>
       <li>Players Drafted: {{ playerCount }}</li>
       <li>Paid: {{ totalPaid }}</li>
-      <li>To Get: {{ playerCountRemaining }}</li>
-      <li>To Spend: {{ totalRemaining }}</li>
+      <li>To Get: {{ playerCountRemaining }} from {{ totalRemaining }}</li>
       <li :class="{overspent : overspent}">To Spend Each: {{ remainingPerPlayer }}</li>
       <li>Max One Player: {{ maxOnePlayer }}</li>
+      <li>
+        {{ countPos('K') }}k
+        {{ countPos('H') }}h
+        {{ countPos('M') }}m
+        {{ countPos('R') }}r
+        {{ countPos('T') }}t
+        {{ countPos('G') }}g
+        {{ countPos('S') }}s
+        {{ countPos('') }}x
+      </li>
     </ul>
   </div>
 </template>
@@ -52,6 +63,12 @@
 
       overspent () {
         return this.remainingPerPlayer < 0.2
+      }
+    },
+
+    methods: {
+      countPos (pos) {
+        return this.players.filter((p) => p.pos === pos).length;
       }
     }
   }
