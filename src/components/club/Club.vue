@@ -6,7 +6,26 @@
     <div class="mpl">
       <multi-player-list :players="players"></multi-player-list>
     </div>
-    <div class="footer">Footer</div>
+    <div class="footer">
+      Adel {{getAflClubPlayerCount('Adelaide')}} &nbsp; &nbsp;
+      Bris {{getAflClubPlayerCount('Brisbane Lions')}} &nbsp; &nbsp;
+      Carl {{getAflClubPlayerCount('Carlton')}} &nbsp; &nbsp;
+      Coll {{getAflClubPlayerCount('Collingwood')}} &nbsp; &nbsp;
+      Ess {{getAflClubPlayerCount('Essendon')}} &nbsp; &nbsp;
+      Fre {{getAflClubPlayerCount('Fremantle')}} &nbsp; &nbsp;
+      Geel {{getAflClubPlayerCount('Geelong')}} &nbsp; &nbsp;
+      GCS {{getAflClubPlayerCount('Gold Coast Suns')}} &nbsp; &nbsp;
+      GWS {{getAflClubPlayerCount('Greater Western Sydney')}} &nbsp; &nbsp;
+      Haw {{getAflClubPlayerCount('Hawthorn')}} &nbsp; &nbsp;
+      NM {{getAflClubPlayerCount('Kangaroos')}} &nbsp; &nbsp;
+      Melb {{getAflClubPlayerCount('Melbourne')}} &nbsp; &nbsp;
+      Port {{getAflClubPlayerCount('Port Adelaide')}} &nbsp; &nbsp;
+      Rich {{getAflClubPlayerCount('Richmond')}} &nbsp; &nbsp;
+      SK {{getAflClubPlayerCount('St Kilda')}} &nbsp; &nbsp;
+      Syd {{getAflClubPlayerCount('Sydney Swans')}} &nbsp; &nbsp;
+      WCE {{getAflClubPlayerCount('West Coast Eagles')}} &nbsp; &nbsp;
+      WB {{getAflClubPlayerCount('Western Bulldogs')}}
+    </div>
   </div>
 </template>
 
@@ -23,6 +42,12 @@
     computed: {
       players () {
         return this.$store.getters.getClubPlayers(this.$route.params.name)
+      }
+    },
+
+    methods: {
+      getAflClubPlayerCount (aflClub) {
+        return this.players.filter(p => p.aflClub == aflClub).length
       }
     }
   }
