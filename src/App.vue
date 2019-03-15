@@ -11,6 +11,10 @@
   export default {
     components: {
       'app-header': Header
+    },
+
+    mounted () {
+      this.$store.dispatch('loadDraftData')
     }
   }
 </script>

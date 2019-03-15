@@ -72,7 +72,7 @@
       <button @click="cents += 70">70</button>
       <button @click="cents += 80">80</button>
       <button @click="cents += 90">90</button>
-      <button @click="cents = 0; draftedBy = ''">Clear</button>
+      <button @click="cents = 0">Clear</button>
     </div>
   </div>
 </template>

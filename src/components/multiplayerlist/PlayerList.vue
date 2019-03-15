@@ -7,6 +7,7 @@
           v-for="p in players"
           :id="position + '--' + p.id"
           :key="p.id"
+          :title="(p.draftedBy.length > 0 ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment"
           @click="playerSelected(p)"
           :class="{
             avoid: p.priority > 500,
@@ -22,8 +23,7 @@
             :class="{
               selected: selectedPlayer === p,
               'has-comment': p.comment.length > 0
-            }"
-            :title="(p.draftedBy.length > 0 ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment">
+            }">
           {{p.name}}
         </td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>

@@ -8,6 +8,7 @@
           :key="p.id">
         <td class="name">{{p.name}}</td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
+        <td class="pos">{{p.pos}}</td>
         <td class="paid">{{p.cents / 100}}</td>
       </tr>
       </tbody>
@@ -16,8 +17,6 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
-
   export default {
     props: {
       players: {

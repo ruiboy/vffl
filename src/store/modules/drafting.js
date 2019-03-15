@@ -43,6 +43,7 @@ export const drafting = {
 
     SET_PLAYER_DRAFTED_BY(state, payload) {
       payload.player.draftedBy = payload.value
+      payload.player.draftedTs = payload.player.draftedBy.length > 0 ?  Date.now() : ''
     },
 
     SET_PLAYER_CENTS(state, payload) {
@@ -95,6 +96,13 @@ export const drafting = {
   getters: {
     getClubPlayers: (state) => (clubName) => {
       return state.players.filter(a => a.draftedBy == clubName)
+        .sort((a, b) => (a.draftedTs < b.draftedTs) ? -1 : (a.draftedTs > b.draftedTs) ? 1 : 0)
+    },
+
+    getDraftedPlayers: (state) => {
+      return state.players
+        .filter(p => p.draftedBy.length > 0)
+        .sort((a, b) => (a.draftedTs < b.draftedTs) ? -1 : (a.draftedTs > b.draftedTs) ? 1 : 0)
     }
   }
 }

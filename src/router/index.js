@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Drafting from "../components/drafting/Drafting";
+import DraftOrder from "../components/draftorder/DraftOrder";
 import Club from "../components/club/Club";
 import Sandbox from "../components/sandbox/SandboxApp";
 
@@ -11,6 +12,10 @@ export default new Router({
     {
       path: '/drafting',
       component: Drafting
+    },
+    {
+      path: '/draftorder',
+      component: DraftOrder
     },
     {
       path: '/club/:name',

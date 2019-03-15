@@ -5,6 +5,9 @@
         <router-link to="/drafting">Drafting</router-link>
       </li>
       <li>
+        <router-link to="/draftorder">Drafted</router-link>
+      </li>
+      <li>
         <router-link to="/club/Austins">Austins</router-link>
       </li>
       <li>

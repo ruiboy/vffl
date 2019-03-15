@@ -30,19 +30,23 @@
         :players="getClubPlayers('Slashers')">
       </drafting-club>
     </div>
-    <div class="footer">Footer</div>
+    <div class="footer">
+      <drafting-progress-meter></drafting-progress-meter>
+    </div>
   </div>
 </template>
 
 <script>
   import MultiPlayerList from '../multiplayerlist/MultiPlayerList.vue'
   import DraftingClub from './DraftingClub.vue'
+  import DraftingProgressMeter from './DraftingProgressMeter.vue'
   import {mapState} from 'vuex'
 
   export default {
     components: {
       'multi-player-list': MultiPlayerList,
-      "drafting-club": DraftingClub
+      'drafting-club': DraftingClub,
+      'drafting-progress-meter': DraftingProgressMeter
     },
 
     computed: {
@@ -56,24 +60,26 @@
       getClubPlayers(clubName) {
         return this.$store.getters.getClubPlayers(clubName)
       }
-    },
-
-    mounted () {
-      this.$store.dispatch('loadDraftData')
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .mpl { grid-area: mpl; }
-  .clubs { grid-area: clubs; }
-  .footer { grid-area: footer; }
+  .mpl {
+    grid-area: mpl;
+  }
+
+  .clubs {
+    grid-area: clubs;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
 
   .drafting {
     display: grid;
-    grid:
-      'mpl mpl mpl mpl clubs'
-      'footer footer footer footer footer';
+    grid: 'mpl mpl mpl mpl clubs' 'footer footer footer footer footer';
     padding: 0;
   }
 </style>
