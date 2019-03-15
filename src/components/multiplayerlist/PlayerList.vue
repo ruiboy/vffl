@@ -93,7 +93,7 @@
 
 <style scoped lang="scss">
   .player-list {
-    border: thin gray solid;
+    border: thin black solid;
   }
 
   .player-list h1 {
@@ -124,22 +124,27 @@
 
   .want1 {
     background-color: #ffd711;
+    color: black;
   }
 
   .want2 {
     background-color: #ffe411;
+    color: black;
   }
 
   .want3 {
     background-color: #ffec44;
+    color: black;
   }
 
   .want4 {
     background-color: #ffef77;
+    color: black;
   }
 
   .want5 {
     background-color: #fff699;;
+    color: black;
   }
 
   .mine {
@@ -148,11 +153,12 @@
   }
 
   .avoid {
-    background-color: lightgray;
+    background-color: darkred;
+    text-decoration: line-through;
   }
 
   .other {
-    background-color: darkgray;
+    background-color: darkred;
   }
 
   // three selectors below add row numbers at start of each table row
