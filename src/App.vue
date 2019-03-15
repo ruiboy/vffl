@@ -27,7 +27,7 @@
   }
 
   tbody::-webkit-scrollbar-thumb {
-    background: darkolivegreen;
+    background: darkred;
   }
 
   tbody::-webkit-scrollbar:horizontal {

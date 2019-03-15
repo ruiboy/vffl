@@ -18,7 +18,14 @@
             mine:  p.draftedBy == 'Ruiboys',
             other: p.draftedBy != 'Ruiboys' && p.draftedBy != ''
           }">
-        <td class="name" :class="{selected: selectedPlayer === p}">{{p.name}}</td>
+        <td class="name"
+            :class="{
+              selected: selectedPlayer === p,
+              'has-comment': p.comment.length > 0
+            }"
+            :title="(p.draftedBy.length > 0 ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment">
+          {{p.name}}
+        </td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
         <td class="k" :class="{highlight: position == 'k'}">{{p.kicks / 10}}</td>
         <td class="h" :class="{highlight: position == 'h'}">{{p.handballs / 10}}</td>
@@ -154,6 +161,10 @@
 
   .other {
     background-color: darkgray;
+  }
+
+  .has-comment::after {
+    content: "≈"
   }
 
   // three selectors below add row numbers at start of each table row
