@@ -6,6 +6,8 @@
       <li>Paid: {{ totalPaid }}</li>
       <li>To Get: {{ playerCountRemaining }}</li>
       <li>To Spend: {{ totalRemaining }}</li>
+      <li :class="{overspent : overspent}">To Spend Each: {{ remainingPerPlayer }}</li>
+      <li>Max One Player: {{ maxOnePlayer }}</li>
     </ul>
   </div>
 </template>
@@ -29,7 +31,7 @@
       },
 
       playerCountRemaining () {
-        return 30 - this.players.length;
+        return 30 - this.playerCount;
       },
 
       totalPaid () {
@@ -37,7 +39,19 @@
       },
 
       totalRemaining () {
-        return this.players.reduce((total, p) => total - p.cents, 3500) / 100
+        return Math.round((35 - this.totalPaid) * 100) / 100
+      },
+
+      remainingPerPlayer () {
+        return Math.round(this.totalRemaining / this.playerCountRemaining * 10000) / 10000
+      },
+
+      maxOnePlayer () {
+        return Math.round((this.totalRemaining - (this.playerCountRemaining * 0.2) + 0.2) * 100) / 100
+      },
+
+      overspent () {
+        return this.remainingPerPlayer < 0.2
       }
     }
   }
@@ -52,6 +66,21 @@
   }
 
   .club h1 {
-    font-size: 1.4em;
+    font-size: 1.2em;
+    margin: 0 0 0 2px;
+  }
+
+  .club ul {
+    margin: 0;
+    padding: 0 0 0 10px;
+  }
+
+  .club li {
+    list-style: none;
+    height: 15px;
+  }
+
+  .overspent {
+    background-color: orangered;
   }
 </style>

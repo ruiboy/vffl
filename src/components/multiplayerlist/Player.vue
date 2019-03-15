@@ -31,9 +31,8 @@
       <button @click="priority = 3">3</button>
       <button @click="priority = 4">4</button>
       <button @click="priority = 5">5</button>
-      <button @click="priority = 10">10</button>
-      <button @click="priority = 500">meh...</button>
-      <button @click="priority = 1000; pos=''">avoid</button>
+      <button @click="priority = 1000; pos=''">Avoid</button>
+      <button @click="priority = 500; pos=''">Clear</button>
     </div>
     <div>
       Comments:
@@ -63,6 +62,7 @@
       <button @click="draftedBy = 'THC'">THC</button>
     </div>
     <div class="money-selectors">
+      <button @click="cents += 100">$1</button>
       <button @click="cents += 10">10</button>
       <button @click="cents += 20">20</button>
       <button @click="cents += 30">30</button>
@@ -72,8 +72,7 @@
       <button @click="cents += 70">70</button>
       <button @click="cents += 80">80</button>
       <button @click="cents += 90">90</button>
-      <button @click="cents += 100">$1</button>
-      <button @click="cents = 0">Clear</button>
+      <button @click="cents = 0; draftedBy = ''">Clear</button>
     </div>
   </div>
 </template>
@@ -178,5 +177,9 @@
   .team-selectors,
   .money-selectors {
     font-size: 0.8em;
+  }
+
+  .money-selectors button {
+    padding: 3px;
   }
 </style>
