@@ -5,9 +5,14 @@
       <tr class="player"
           v-for="p in players"
           :id="p.id"
-          :key="p.id">
+          :key="p.id"
+          @click="playerSelected(p)"
+          :class="{
+           'no-position': p.pos.length == 0,
+            unavailable: p.priority > 500
+          }">
         <td class="name">{{p.name}}</td>
-        <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
+        <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 4)}}</td>
         <td class="pos">{{p.pos}}</td>
         <td class="paid">{{p.cents / 100}}</td>
       </tr>
@@ -24,6 +29,12 @@
         type: Array
       }
     },
+
+    methods: {
+      playerSelected(player) {
+        this.$emit('playerSelected', player);
+      }
+    }
   }
 </script>
 
@@ -40,12 +51,21 @@
   .player-list tbody {
     // make only the table body scroll within a view port
     display: block;
-    width: 150px;
+    width: 200px;
     height: 694px;
     overflow: scroll;
   }
 
   .player td {
     font-size: 0.7em;
+  }
+
+  .no-position {
+    background-color: #ffd711;
+  }
+
+  .unavailable {
+    background-color: #777777;
+    text-decoration: line-through;
   }
 </style>

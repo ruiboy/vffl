@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import MultiPlayerList from '../multiplayerlist/MultiPlayerList.vue'
+  import MultiPlayerList from '../teambuilder/MultiPlayerList.vue'
   import ClubPlayers from './ClubPlayers.vue'
 
   export default {
