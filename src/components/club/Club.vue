@@ -64,6 +64,7 @@
 
   .footer {
     grid-area: footer;
+    font-size: 0.8em;;
   }
 
   .club {

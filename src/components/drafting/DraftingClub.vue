@@ -4,7 +4,7 @@
       <router-link :to="{path: '/club/' + name}">{{ name }}</router-link>
     </h1>
     <ul>
-      <li>Players Drafted: {{ playerCount }}</li>
+      <li>Players: {{ playerCount }}</li>
       <li>Paid: {{ totalPaid }}</li>
       <li>To Get: {{ playerCountRemaining }} from {{ totalRemaining }}</li>
       <li :class="{overspent : overspent}">To Spend Each: {{ remainingPerPlayer }}</li>
