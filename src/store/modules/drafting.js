@@ -29,6 +29,10 @@ export const drafting = {
       state.players = players
     },
 
+    SET_AFL_CLUB(state, payload) {
+      payload.player.aflClub = payload.value
+    },
+
     SET_PLAYER_POSITION(state, payload) {
       payload.player.pos = payload.value
     },
@@ -65,6 +69,11 @@ export const drafting = {
           context.commit('SET_PLAYERS', [])
           console.log(error)
         })
+    },
+
+    setAflClub(context, payload) {
+      context.commit('SET_AFL_CLUB', payload)
+      savePlayer(payload.player)
     },
 
     setPlayerPos(context, payload) {
