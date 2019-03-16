@@ -2,7 +2,7 @@
   <div class="player-list">
     <h1>{{ title }}</h1>
     <table>
-      <tbody>
+      <tbody :id="position + '-tbody'">
       <tr class="player"
           v-for="p in players"
           :id="position + '--' + p.id"
@@ -78,14 +78,19 @@
 
       selectAndScrollToPlayer(player) {
         this.selectedPlayer = player
-        // scroll player in to view
-        var el = document.getElementById(this.position + '--' + player.id)
-        var rect = el.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight) {
-          el.scrollIntoView(false);
-        }
-        if (rect.top < 0) {
-          el.scrollIntoView();
+        if (player != null) {
+          // scroll player in to view
+          var el = document.getElementById(this.position + '--' + player.id)
+          var rect = el.getBoundingClientRect();
+          if (rect.bottom > window.innerHeight) {
+            el.scrollIntoView(false);
+          }
+          if (rect.top < 0) {
+            el.scrollIntoView();
+          }
+        } else {
+          // scroll to top
+          var el = document.getElementById(this.position + '-tbody').scrollTop = 0
         }
       }
     },

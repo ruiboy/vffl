@@ -74,6 +74,7 @@
       <button @click="cents += 90">90</button>
       <button @click="cents = 0">Clear</button>
     </div>
+    <button class="close" @click="closePlayer">x</button>
   </div>
 </template>
 
@@ -131,6 +132,12 @@
           this.$store.dispatch('setPlayerCents', {player: this.player, value: value})
         }
       }
+    },
+
+    methods: {
+      closePlayer () {
+        this.$emit('playerClosed');
+      }
     }
   }
 </script>
@@ -141,6 +148,8 @@
     border: thin black solid;
     width: 306px;
     height: 350px;
+    // needed so can absolute position children
+    position: relative;
   }
 
   .player div {
@@ -181,5 +190,11 @@
 
   .money-selectors button {
     padding: 3px;
+  }
+
+  .close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
   }
 </style>

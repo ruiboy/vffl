@@ -51,7 +51,8 @@
     </player-list>
     <player
       v-if="selectedPlayer != null"
-      :player="selectedPlayer">
+      :player="selectedPlayer"
+      v-on:playerClosed="playerSelected(null)">
     </player>
   </div>
 </template>
