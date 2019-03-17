@@ -12,9 +12,10 @@
             unavailable: p.priority > 500
           }">
         <td class="name">{{p.name}}</td>
-        <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 4)}}</td>
+        <td class="afl-club" :title="p.aflClub">{{p.aflClub.substring(0, 4)}}</td>
         <td class="pos">{{p.pos}}</td>
         <td class="paid">{{p.cents / 100}}</td>
+        <td class="drafted-ts">{{new Date(p.draftedTs).toLocaleTimeString()}}</td>
       </tr>
       </tbody>
     </table>
@@ -51,7 +52,7 @@
   .player-list tbody {
     // make only the table body scroll within a view port
     display: block;
-    width: 200px;
+    width: 240px;
     height: 694px;
     overflow: scroll;
   }
