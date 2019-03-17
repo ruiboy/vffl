@@ -50,7 +50,7 @@
       v-on:playerSelected="playerSelected($event)">
     </player-list>
     <player
-      v-if="selectedPlayer != null"
+      v-if="selectedPlayer !== null"
       :player="selectedPlayer">
     </player>
   </div>

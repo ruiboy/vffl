@@ -10,7 +10,7 @@
           :title="(p.draftedBy.length > 0 ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment"
           @click="playerSelected(p)"
           :class="{
-            'in-position': p.pos.toUpperCase() == position.toUpperCase(),
+            'in-position': p.pos.toUpperCase() === position.toUpperCase(),
             unavailable: p.priority > 500
           }">
         <td class="name"
@@ -21,13 +21,13 @@
           {{p.name}}
         </td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
-        <td class="k" :class="{highlight: position == 'k'}">{{p.kicks / 10}}</td>
-        <td class="h" :class="{highlight: position == 'h'}">{{p.handballs / 10}}</td>
-        <td class="m" :class="{highlight: position == 'm'}">{{p.marks / 10}}</td>
-        <td class="r" :class="{highlight: position == 'r'}">{{p.hitouts / 10}}</td>
-        <td class="t" :class="{highlight: position == 't'}">{{p.tackles / 10}}</td>
-        <td class="g" :class="{highlight: position == 'g'}">{{p.goals / 10}}</td>
-        <td class="s" :class="{highlight: position == 's'}">{{p.star / 10}}</td>
+        <td class="k" :class="{highlight: position === 'k'}">{{p.kicks / 10}}</td>
+        <td class="h" :class="{highlight: position === 'h'}">{{p.handballs / 10}}</td>
+        <td class="m" :class="{highlight: position === 'm'}">{{p.marks / 10}}</td>
+        <td class="r" :class="{highlight: position === 'r'}">{{p.hitouts / 10}}</td>
+        <td class="t" :class="{highlight: position === 't'}">{{p.tackles / 10}}</td>
+        <td class="g" :class="{highlight: position === 'g'}">{{p.goals / 10}}</td>
+        <td class="s" :class="{highlight: position === 's'}">{{p.star / 10}}</td>
         <td class="games">{{p.played}}</td>
       </tr>
       </tbody>
@@ -86,7 +86,7 @@
 
     watch: {
       playerToSelect (player) {
-        if (player != null) this.selectAndScrollToPlayer(player)
+        if (player !== null) this.selectAndScrollToPlayer(player)
       }
     }
   }

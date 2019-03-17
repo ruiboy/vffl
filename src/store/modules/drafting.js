@@ -104,7 +104,7 @@ export const drafting = {
 
   getters: {
     getClubPlayers: (state) => (clubName) => {
-      return state.players.filter(a => a.draftedBy == clubName)
+      return state.players.filter(a => a.draftedBy === clubName)
         .sort((a, b) => (a.draftedTs < b.draftedTs) ? -1 : (a.draftedTs > b.draftedTs) ? 1 : 0)
     },
 

@@ -11,13 +11,13 @@
           @click="playerSelected(p)"
           :class="{
             avoid: p.priority > 500,
-            want1: p.priority == 1,
-            want2: p.priority == 2,
-            want3: p.priority == 3,
-            want4: p.priority == 4,
-            want5: p.priority == 5,
-            mine:  p.draftedBy == 'Ruiboys',
-            other: p.draftedBy != 'Ruiboys' && p.draftedBy != ''
+            want1: p.priority === 1,
+            want2: p.priority === 2,
+            want3: p.priority === 3,
+            want4: p.priority === 4,
+            want5: p.priority === 5,
+            mine:  p.draftedBy === 'Ruiboys',
+            other: p.draftedBy !== 'Ruiboys' && p.draftedBy !== ''
           }">
         <td class="name"
             :class="{
@@ -27,13 +27,13 @@
           {{p.name}}
         </td>
         <td class="aflClub" :title="p.aflClub">{{p.aflClub.substring(0, 2)}}</td>
-        <td class="k" :class="{highlight: position == 'k'}">{{p.kicks / 10}}</td>
-        <td class="h" :class="{highlight: position == 'h'}">{{p.handballs / 10}}</td>
-        <td class="m" :class="{highlight: position == 'm'}">{{p.marks / 10}}</td>
-        <td class="r" :class="{highlight: position == 'r'}">{{p.hitouts / 10}}</td>
-        <td class="t" :class="{highlight: position == 't'}">{{p.tackles / 10}}</td>
-        <td class="g" :class="{highlight: position == 'g'}">{{p.goals / 10}}</td>
-        <td class="s" :class="{highlight: position == 's'}">{{p.star / 10}}</td>
+        <td class="k" :class="{highlight: position === 'k'}">{{p.kicks / 10}}</td>
+        <td class="h" :class="{highlight: position === 'h'}">{{p.handballs / 10}}</td>
+        <td class="m" :class="{highlight: position === 'm'}">{{p.marks / 10}}</td>
+        <td class="r" :class="{highlight: position === 'r'}">{{p.hitouts / 10}}</td>
+        <td class="t" :class="{highlight: position === 't'}">{{p.tackles / 10}}</td>
+        <td class="g" :class="{highlight: position === 'g'}">{{p.goals / 10}}</td>
+        <td class="s" :class="{highlight: position === 's'}">{{p.star / 10}}</td>
         <td class="games">{{p.played}}</td>
       </tr>
       </tbody>
@@ -78,7 +78,7 @@
 
       selectAndScrollToPlayer(player) {
         this.selectedPlayer = player
-        if (player != null) {
+        if (player !== null) {
           // scroll player in to view
           var el = document.getElementById(this.position + '--' + player.id)
           var rect = el.getBoundingClientRect();

@@ -47,7 +47,7 @@
 
     methods: {
       getAflClubPlayerCount (aflClub) {
-        return this.players.filter(p => p.aflClub == aflClub).length
+        return this.players.filter(p => p.aflClub === aflClub).length
       }
     }
   }
