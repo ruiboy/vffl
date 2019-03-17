@@ -73,8 +73,8 @@
       selectAndScrollToPlayer(player) {
         this.selectedPlayer = player
         // scroll player in to view
-        var el = document.getElementById(this.position + '--' + player.id)
-        var rect = el.getBoundingClientRect();
+        const el = document.getElementById(this.position + '--' + player.id)
+        const rect = el.getBoundingClientRect();
         if (rect.bottom > window.innerHeight) {
           el.scrollIntoView(false);
         }

@@ -80,8 +80,8 @@
         this.selectedPlayer = player
         if (player !== null) {
           // scroll player in to view
-          var el = document.getElementById(this.position + '--' + player.id)
-          var rect = el.getBoundingClientRect();
+          const el = document.getElementById(this.position + '--' + player.id)
+          const rect = el.getBoundingClientRect();
           if (rect.bottom > window.innerHeight) {
             el.scrollIntoView(false);
           }
@@ -90,7 +90,7 @@
           }
         } else {
           // scroll to top
-          var el = document.getElementById(this.position + '-tbody').scrollTop = 0
+          document.getElementById(this.position + '-tbody').scrollTop = 0
         }
       }
     },

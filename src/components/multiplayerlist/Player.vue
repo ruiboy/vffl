@@ -169,7 +169,7 @@
 
     methods: {
       toggleAflClubSetter () {
-        var el = document.getElementById('afl-club-popup')
+        const el = document.getElementById('afl-club-popup')
         el.style.display = (el.style.display === 'none') ? 'block' : 'none'
       },
 
