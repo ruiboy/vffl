@@ -4,11 +4,11 @@
       <router-link :to="{path: '/club/' + name}">{{ name }}</router-link>
     </h1>
     <ul>
-      <li>Players: {{ playerCount }}</li>
+      <li>Players: {{ playerCount }} <span v-if="allDone" class="done">DONE!</span></li>
       <li>Paid: {{ totalPaid }}</li>
       <li>To Get: {{ playerCountRemaining }} from {{ totalRemaining }}</li>
-      <li :class="{overspent : overspent}">To Spend Each: {{ remainingPerPlayer }}</li>
-      <li>Max One Player: {{ maxOnePlayer }}</li>
+      <li :class="{overspent : overspent}">To Spend Each: <span v-if="!allDone" class="important">{{ remainingPerPlayer }}</span></li>
+      <li>Max One Player: <span v-if="!allDone" class="important">{{ maxOnePlayer }}</span></li>
       <li>
         {{ countPos('K') }}k
         {{ countPos('H') }}h
@@ -43,6 +43,10 @@
 
       playerCountRemaining () {
         return 30 - this.playerCount;
+      },
+
+      allDone () {
+        return this.playerCountRemaining === 0
       },
 
       totalPaid () {
@@ -95,6 +99,11 @@
   .club li {
     list-style: none;
     height: 15px;
+  }
+
+  .done,
+  .important {
+    font-weight: bold;
   }
 
   .overspent {

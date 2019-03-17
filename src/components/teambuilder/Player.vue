@@ -12,8 +12,8 @@
       <button @click="pos = ''">Not sure</button>
     </div>
     <div class="priority-selectors">
-      <button @click="priority = 1000; pos=''">Unavailable</button>
-      <button @click="priority = 500; pos=''">Available</button>
+      <button @click="priority = 1000">Unavailable</button>
+      <button @click="priority = 500">Available</button>
     </div>
     <div>
       Comments:
@@ -88,7 +88,8 @@
     height: 100px;
   }
 
-  .pos-selectors {
+  .pos-selectors,
+  .priority-selectors {
     font-size: 0.8em;
   }
 </style>
