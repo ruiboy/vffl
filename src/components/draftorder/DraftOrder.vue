@@ -18,27 +18,24 @@
     </div>
     <div class="chart">
       <chart-players-per-afl-club></chart-players-per-afl-club>
+      <chart-players-per-cost></chart-players-per-cost>
     </div>
   </div>
 </template>
 
 <script>
   import ChartPlayersPerAflClub from './ChartPlayersPerAflClub.vue'
+  import ChartPlayersPerCost from './ChartPlayersPerCost.vue'
 
   export default {
     components: {
-      'chart-players-per-afl-club': ChartPlayersPerAflClub
+      'chart-players-per-afl-club': ChartPlayersPerAflClub,
+      'chart-players-per-cost': ChartPlayersPerCost
     },
 
     computed: {
       players () {
         return this.$store.getters.getDraftedPlayers
-      }
-    },
-
-    methods: {
-      getAflClubPlayerCount (aflClub) {
-        return this.players.filter(p => p.aflClub === aflClub).length
       }
     }
   }
