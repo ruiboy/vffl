@@ -1,8 +1,8 @@
 <script>
-  import {Line} from 'vue-chartjs'
+  import {Scatter} from 'vue-chartjs'
 
   export default {
-    extends: Line,
+    extends: Scatter,
 
     methods: {
       // return array of eg: {cents: "20", count: 12}
@@ -26,12 +26,21 @@
         {
           labels: counts.map(c => c.cents / 100),
           datasets: [{
-            label: 'Players per Cost',
-            backgroundColor: 'darkslategray',
+            label: 'Player Cost',
+            backgroundColor: 'orange',
             borderColor: 'lightgray',
-            spanGaps: false,
-            data: counts.map(c => c.count)
+            showLine: true,
+            data: counts.map(c => ({x: c.cents / 100, y: c.count}))
           }]
+        },
+        {
+          scales: {
+            xAxes: [{
+              ticks: {
+                stepSize: 0.5
+              }
+            }]
+          }
         }
       )
     }

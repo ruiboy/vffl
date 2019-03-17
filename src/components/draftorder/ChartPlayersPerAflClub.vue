@@ -27,7 +27,7 @@
           labels: counts.map(c => c.aflClub),
           datasets: [{
             label: 'Players per AFL Club',
-            backgroundColor: 'darkslategray',
+            backgroundColor: 'green',
             borderColor: 'lightgray',
             data: counts.map(c => c.count)
           }]
@@ -35,7 +35,6 @@
         {
           scales: {
             yAxes: [{
-              display: true,
               ticks: {
                 beginAtZero: true
               }
