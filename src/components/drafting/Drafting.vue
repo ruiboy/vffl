@@ -31,7 +31,7 @@
       </drafting-club>
     </div>
     <div class="footer">
-      <drafting-progress-meter></drafting-progress-meter>
+      <drafting-progress-meter :players="players"></drafting-progress-meter>
     </div>
   </div>
 </template>

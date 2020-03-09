@@ -1,27 +1,21 @@
 <template>
   <div class="progress-meter">
-    <span
-      v-for="p in players"
-      :key="p.id"
-      class="increment done"
-    ></span>
-    <span
-      v-for="p in playersRemaining"
-      :key="p.id"
-      class="increment not-done"
-    ></span>
+    <div class="done" :style="'width:' + percentage + '%'"></div>
   </div>
 </template>
 
 <script>
   export default {
-    computed: {
-      players () {
-        return this.$store.getters.getDraftedPlayers
-      },
+    props: {
+      players: {
+        required: true,
+        type: Array
+      }
+    },
 
-      playersRemaining () {
-        return 180 - this.players.length
+    computed: {
+      percentage () {
+        return this.players.filter(p => p.draftedBy).length / 180 * 100
       }
     }
   }
@@ -32,17 +26,10 @@
     width: 1395px;
     height: 10px;
     display: flex;
-  }
-
-  .increment {
-    width: 100px;
+    background-color: darkblue;
   }
 
   .done {
     background-color: gold;
-  }
-
-  .not-done {
-    background-color: darkblue;
   }
 </style>
