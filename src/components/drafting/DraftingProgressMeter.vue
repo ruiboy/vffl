@@ -39,10 +39,10 @@
   }
 
   .done {
-    background-color: darkblue;
+    background-color: gold;
   }
 
   .not-done {
-    background-color: grey;
+    background-color: darkblue;
   }
 </style>

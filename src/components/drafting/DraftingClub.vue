@@ -4,20 +4,23 @@
       <router-link :to="{path: '/club/' + name}">{{ name }}</router-link>
     </h1>
     <ul>
-      <li>Players: {{ playerCount }} <span v-if="allDone" class="done">DONE!</span></li>
-      <li>Paid: {{ totalPaid }}</li>
-      <li>To Get: {{ playerCountRemaining }} from {{ totalRemaining }}</li>
-      <li :class="{overspent : overspent}">To Spend Each: <span v-if="!allDone" class="important">{{ remainingPerPlayer }}</span></li>
-      <li>Max One Player: <span v-if="!allDone" class="important">{{ maxOnePlayer }}</span></li>
+      <li>players: <span class="value">{{ playerCount }}</span><span v-if="allDone" class="done">DONE!</span></li>
+      <li>paid: <span class="value">{{ totalPaid }}</span></li>
       <li>
-        {{ countPos('K') }}k
-        {{ countPos('H') }}h
-        {{ countPos('M') }}m
-        {{ countPos('R') }}r
-        {{ countPos('T') }}t
-        {{ countPos('G') }}g
-        {{ countPos('S') }}s
-        {{ countPos('') }}x
+        to get: <span class="value">{{ playerCountRemaining }}</span>
+        from <span class="value">{{ totalRemaining }}</span>
+      </li>
+      <li :class="{overspent : overspent}">to spend each: <span v-if="!allDone" class="value important">{{ remainingPerPlayer }}</span></li>
+      <li>max one player: <span v-if="!allDone" class="value important">{{ maxOnePlayer }}</span></li>
+      <li>
+        k <span class="value">{{ countPos('K') }}</span>
+        h <span class="value">{{ countPos('H') }}</span>
+        m <span class="value">{{ countPos('M') }}</span>
+        r <span class="value">{{ countPos('R') }}</span>
+        t <span class="value">{{ countPos('T') }}</span>
+        g <span class="value">{{ countPos('G') }}</span>
+        s <span class="value">{{ countPos('S') }}</span>
+        ? <span class="value">{{ countPos('') }}</span>
       </li>
     </ul>
   </div>
@@ -58,7 +61,7 @@
       },
 
       remainingPerPlayer () {
-        return Math.round(this.totalRemaining / this.playerCountRemaining * 10000) / 10000
+        return Math.round(this.totalRemaining / this.playerCountRemaining * 100) / 100
       },
 
       maxOnePlayer () {
@@ -88,12 +91,17 @@
 
   .club h1 {
     font-size: 1.2em;
-    margin: 0 0 0 2px;
+    margin: 0 0 0 5px;
+  }
+
+  .club h1 a {
+    color: black;
   }
 
   .club ul {
     margin: 0;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 5px;
+    color: #333333;
   }
 
   .club li {
@@ -102,8 +110,13 @@
   }
 
   .done,
-  .important {
+  .value {
     font-weight: bold;
+    color: black;
+  }
+
+  .important {
+    text-decoration: underline;
   }
 
   .overspent {

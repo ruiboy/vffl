@@ -23,6 +23,7 @@
   body {
     margin: 0px;
     padding: 0px;
+    background: #eeeeff;
   }
 
   // custom scroll bar
@@ -31,7 +32,7 @@
   }
 
   tbody::-webkit-scrollbar-thumb {
-    background: darkred;
+    background: darkblue;
   }
 
   tbody::-webkit-scrollbar:horizontal {

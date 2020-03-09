@@ -1,6 +1,9 @@
 <template>
   <div class="player">
-    <div class="name" @click="toggleAflClubSetter">{{player.name}} ({{player.aflClub}})</div>
+    <div @click="toggleAflClubSetter">
+      <span class="name">{{player.name}}</span>
+      <span class="club">{{player.aflClub}}</span>
+    </div>
     <div>
       Position:
       <select class="pos" v-model="pos">
@@ -72,7 +75,7 @@
       <button @click="cents += 70">70</button>
       <button @click="cents += 80">80</button>
       <button @click="cents += 90">90</button>
-      <button @click="cents = 0">Clear</button>
+      <button @click="cents = 0; draftedBy =''">Clear</button>
     </div>
     <div id="afl-club-popup">
       New Club:
@@ -196,6 +199,11 @@
 
   .name {
     font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .club {
+    font-size: 0.9em;
     font-weight: bold;
   }
 

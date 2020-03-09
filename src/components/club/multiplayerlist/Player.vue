@@ -1,6 +1,9 @@
 <template>
   <div class="player">
-    <div class="name">{{player.name}} ({{player.aflClub}})</div>
+    <div>
+      <span class="name">{{player.name}}</span>
+      <span class="club">{{player.aflClub}}</span>
+    </div>
     <div class="pos-selectors">
       <button @click="pos = 'K'">K</button>
       <button @click="pos = 'H'">H</button>
@@ -76,6 +79,11 @@
 
   .name {
     font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .club {
+    font-size: 0.9em;
     font-weight: bold;
   }
 

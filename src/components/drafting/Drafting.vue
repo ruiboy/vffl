@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import MultiPlayerList from '../multiplayerlist/MultiPlayerList.vue'
+  import MultiPlayerList from './multiplayerlist/MultiPlayerList.vue'
   import DraftingClub from './DraftingClub.vue'
   import DraftingProgressMeter from './DraftingProgressMeter.vue'
   import {mapState} from 'vuex'

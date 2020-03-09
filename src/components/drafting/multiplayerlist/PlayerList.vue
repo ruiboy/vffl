@@ -2,7 +2,7 @@
   <div class="player-list">
     <h1>{{ title }}</h1>
     <table>
-      <tbody>
+      <tbody :id="position + '-tbody'">
       <tr class="player"
           v-for="p in players"
           :id="position + '--' + p.id"
@@ -10,8 +10,14 @@
           :title="(p.draftedBy.length > 0 ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment"
           @click="playerSelected(p)"
           :class="{
-            'in-position': p.pos.toUpperCase() === position.toUpperCase(),
-            unavailable: p.priority > 500
+            avoid: p.priority > 500,
+            want1: p.priority === 1,
+            want2: p.priority === 2,
+            want3: p.priority === 3,
+            want4: p.priority === 4,
+            want5: p.priority === 5,
+            mine:  p.draftedBy === 'Ruiboys',
+            other: p.draftedBy !== 'Ruiboys' && p.draftedBy !== ''
           }">
         <td class="name"
             :class="{
@@ -72,21 +78,26 @@
 
       selectAndScrollToPlayer(player) {
         this.selectedPlayer = player
-        // scroll player in to view
-        const el = document.getElementById(this.position + '--' + player.id)
-        const rect = el.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight) {
-          el.scrollIntoView(false);
-        }
-        if (rect.top < 0) {
-          el.scrollIntoView();
+        if (player !== null) {
+          // scroll player in to view
+          const el = document.getElementById(this.position + '--' + player.id)
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom > window.innerHeight) {
+            el.scrollIntoView(false);
+          }
+          if (rect.top < 0) {
+            el.scrollIntoView();
+          }
+        } else {
+          // scroll to top
+          document.getElementById(this.position + '-tbody').scrollTop = 0
         }
       }
     },
 
     watch: {
       playerToSelect (player) {
-        if (player !== null) this.selectAndScrollToPlayer(player)
+        this.selectAndScrollToPlayer(player)
       }
     }
   }
@@ -105,7 +116,7 @@
   .player-list tbody {
     // make only the table body scroll within a view port
     display: block;
-    width: 280px;
+    width: 300px;
     height: 330px;
     overflow: scroll;
   }
@@ -120,19 +131,60 @@
 
   .selected {
     background-color: darkolivegreen;
-    color: white;
+    color: yellow;
   }
 
-  .in-position {
+  .want1 {
     background-color: #ffd711;
   }
 
-  .unavailable {
-    background-color: #777777;
+  .want2 {
+    background-color: #ffe411;
+  }
+
+  .want3 {
+    background-color: #ffec44;
+  }
+
+  .want4 {
+    background-color: #ffef77;
+  }
+
+  .want5 {
+    background-color: #fff699;;
+  }
+
+  .mine {
+    background-color: royalblue;
+    color: gold;
+  }
+
+  .avoid {
+    background-color: gray;
     text-decoration: line-through;
+  }
+
+  .other {
+    background-color: darkgray;
   }
 
   .has-comment::after {
     content: "≈"
+  }
+
+  // three selectors below add row numbers at start of each table row
+  .player-list table {
+    counter-reset: rowNumber;
+  }
+
+  .player-list table tr {
+    counter-increment: rowNumber;
+  }
+
+  .player-list table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+    font-size: 0.6em;
   }
 </style>
