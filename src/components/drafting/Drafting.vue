@@ -31,7 +31,11 @@
       </drafting-club>
     </div>
     <div class="footer">
-      <drafting-progress-meter :players="players"></drafting-progress-meter>
+      <drafted-player-progress-meter
+        :players="players"
+        :denominator="180">
+      </drafted-player-progress-meter>
+      <afl-club-drafted-player-count :players="players"></afl-club-drafted-player-count>
     </div>
   </div>
 </template>
@@ -39,14 +43,16 @@
 <script>
   import MultiPlayerList from './multiplayerlist/MultiPlayerList.vue'
   import DraftingClub from './DraftingClub.vue'
-  import DraftingProgressMeter from './DraftingProgressMeter.vue'
+  import DraftedPlayerProgressMeter from '../common/DraftedPlayerProgressMeter.vue'
+  import AflClubDraftedPlayerCount from '../common/AflClubDraftedPlayerCount'
   import {mapState} from 'vuex'
 
   export default {
     components: {
       'multi-player-list': MultiPlayerList,
       'drafting-club': DraftingClub,
-      'drafting-progress-meter': DraftingProgressMeter
+      'drafted-player-progress-meter': DraftedPlayerProgressMeter,
+      'afl-club-drafted-player-count': AflClubDraftedPlayerCount
     },
 
     computed: {

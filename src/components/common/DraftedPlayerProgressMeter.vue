@@ -10,12 +10,16 @@
       players: {
         required: true,
         type: Array
+      },
+      denominator: {
+        required: true,
+        type: Number
       }
     },
 
     computed: {
       percentage () {
-        return this.players.filter(p => p.draftedBy).length / 180 * 100
+        return this.players.filter(p => p.draftedBy).length / this.denominator * 100
       }
     }
   }
