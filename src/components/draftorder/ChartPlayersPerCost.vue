@@ -11,7 +11,7 @@
         // build a map of cents => drafted players count, then turn into sorted array of objects
         const map = new Map()
         this.$store.state.drafting.players
-          .filter(a => a.draftedBy.length > 0)
+          .filter(a => a.draftedBy)
           .forEach(p => map.set(p.cents, (map.get(p.cents) || 0) + 1))
 
         const res = []

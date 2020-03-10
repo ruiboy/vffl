@@ -26,6 +26,9 @@
         <router-link to="/club/THC">THC</router-link>
       </li>
       <li>
+        <router-link to="/addplayer">Add Player</router-link>
+      </li>
+      <li>
         <router-link to="/sandbox/value123">Sandbox</router-link>
       </li>
     </ul>

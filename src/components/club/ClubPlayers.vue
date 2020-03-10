@@ -8,7 +8,7 @@
           :key="p.id"
           @click="playerSelected(p)"
           :class="{
-           'no-position': p.pos.length === 0,
+           'no-position': !p.pos,
             unavailable: p.priority > 500
           }">
         <td class="name">{{p.name}}</td>

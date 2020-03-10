@@ -9,9 +9,7 @@ function savePlayer(player) {
           'Content-Type': 'application/json',
         }
       })
-    .catch(error => {
-      console.log(error)
-    })
+    .catch(error => console.log(error))
 }
 
 export const drafting = {
@@ -27,6 +25,10 @@ export const drafting = {
 
     SET_PLAYERS(state, players) {
       state.players = players
+    },
+
+    ADD_PLAYER(state, payload) {
+      state.players.push(payload);
     },
 
     SET_AFL_CLUB(state, payload) {
@@ -47,7 +49,7 @@ export const drafting = {
 
     SET_PLAYER_DRAFTED_BY(state, payload) {
       payload.player.draftedBy = payload.value
-      payload.player.draftedTs = payload.player.draftedBy.length > 0 ?  Date.now() : ''
+      payload.player.draftedTs = payload.player.draftedBy ? Date.now() : ''
     },
 
     SET_PLAYER_CENTS(state, payload) {
@@ -69,6 +71,19 @@ export const drafting = {
           context.commit('SET_PLAYERS', [])
           console.log(error)
         })
+    },
+
+    addPlayer(context, payload) {
+      axios
+        .post('http://localhost:8090/drafting/updatePlayer',
+          payload.player,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
+        .then(response => context.commit('ADD_PLAYER', response.data))
+        .catch(error => console.log(error))
     },
 
     setAflClub(context, payload) {
@@ -110,7 +125,7 @@ export const drafting = {
 
     getDraftedPlayers: (state) => {
       return state.players
-        .filter(p => p.draftedBy.length > 0)
+        .filter(p => p.draftedBy)
         .sort((a, b) => (a.draftedTs < b.draftedTs) ? -1 : (a.draftedTs > b.draftedTs) ? 1 : 0)
     }
   }

@@ -7,16 +7,16 @@
           v-for="p in players"
           :id="position + '--' + p.id"
           :key="p.id"
-          :title="(p.draftedBy.length > 0 ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment"
+          :title="(p.draftedBy ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment"
           @click="playerSelected(p)"
           :class="{
-            'in-position': p.pos.toUpperCase() === position.toUpperCase(),
+            'in-position': p.pos && p.pos.toUpperCase() === position.toUpperCase(),
             unavailable: p.priority > 500
           }">
         <td class="name"
             :class="{
               selected: selectedPlayer === p,
-              'has-comment': p.comment.length > 0
+              'has-comment': p.comment
             }">
           {{p.name}}
         </td>
