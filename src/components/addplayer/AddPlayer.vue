@@ -1,5 +1,6 @@
 <template>
-  <div class="player">
+  <div class="add-player">
+    <h1>Add Player</h1>
     <form>
       Name
       <input class="name" v-model="player.name"/>
@@ -24,8 +25,7 @@
         <option value="West Coast Eagles">WCE</option>
         <option value="Western Bulldogs">WB</option>
       </select>
-      <button type="submit" @click="insert">Insert Player</button>
-      <button type="reset">Cancel</button>
+      <button type="submit" @click="insert">Add</button>
     </form>
   </div>
 </template>
@@ -50,4 +50,11 @@
 </script>
 
 <style scoped lang="scss">
+  .add-player {
+    margin: 10px;
+  }
+
+  .add-player h1 {
+    font-size: 1em;
+  }
 </style>
