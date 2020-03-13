@@ -108,7 +108,7 @@
 
   .player-list h1 {
     font-size: 0.8em;
-    margin: 0;
+    margin: 0 0 0 4px;
   }
 
   .player-list tbody {

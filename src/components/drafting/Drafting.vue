@@ -14,20 +14,20 @@
         :players="getClubPlayers('Austins')">
       </drafting-club>
       <drafting-club
-        :name="'Fred'"
-        :players="getClubPlayers('Fred')">
+        :name="'Slashers'"
+        :players="getClubPlayers('Slashers')">
       </drafting-club>
       <drafting-club
-        :name="'Ruiboys'"
-        :players="getClubPlayers('Ruiboys')">
+        :name="'Fred'"
+        :players="getClubPlayers('Fred')">
       </drafting-club>
       <drafting-club
         :name="'Cheetahs'"
         :players="getClubPlayers('Cheetahs')">
       </drafting-club>
       <drafting-club
-        :name="'Slashers'"
-        :players="getClubPlayers('Slashers')">
+        :name="'Ruiboys'"
+        :players="getClubPlayers('Ruiboys')">
       </drafting-club>
     </div>
     <div class="footer">

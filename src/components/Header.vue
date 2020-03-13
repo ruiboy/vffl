@@ -42,6 +42,7 @@
   .header {
     background-color: darkblue;
     color: white;
+    padding-top: 10px;
   }
 
   .header a {
