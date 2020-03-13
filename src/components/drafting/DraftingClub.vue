@@ -85,8 +85,8 @@
   .club {
     border: thin black solid;
     font-size: 0.8em;
-    width: 170px;
-    height: 116px;
+    width: 174px;
+    height: 117px;
   }
 
   .club h1 {

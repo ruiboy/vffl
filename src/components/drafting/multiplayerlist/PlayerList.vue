@@ -115,7 +115,7 @@
     // make only the table body scroll within a view port
     display: block;
     width: 300px;
-    height: 330px;
+    height: 331px;
     overflow: scroll;
   }
 

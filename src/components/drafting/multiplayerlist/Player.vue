@@ -188,7 +188,7 @@
     padding: 6px;
     border: thin black solid;
     width: 306px;
-    height: 350px;
+    height: 351px;
     // needed so can absolute position children
     position: relative;
   }
