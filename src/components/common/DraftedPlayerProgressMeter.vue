@@ -27,7 +27,7 @@
 
 <style scoped lang="scss">
   .progress-meter {
-    width: 1395px;
+    width: 100%;
     height: 10px;
     display: flex;
     background-color: darkblue;
