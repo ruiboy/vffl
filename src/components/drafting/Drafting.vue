@@ -10,18 +10,6 @@
         :players="getClubPlayers('THC')">
       </drafting-club>
       <drafting-club
-        :name="'Austins'"
-        :players="getClubPlayers('Austins')">
-      </drafting-club>
-      <drafting-club
-        :name="'Slashers'"
-        :players="getClubPlayers('Slashers')">
-      </drafting-club>
-      <drafting-club
-        :name="'Fred'"
-        :players="getClubPlayers('Fred')">
-      </drafting-club>
-      <drafting-club
         :name="'Cheetahs'"
         :players="getClubPlayers('Cheetahs')">
       </drafting-club>
@@ -29,11 +17,15 @@
         :name="'Ruiboys'"
         :players="getClubPlayers('Ruiboys')">
       </drafting-club>
+      <drafting-club
+        :name="'Slashers'"
+        :players="getClubPlayers('Slashers')">
+      </drafting-club>
     </div>
     <div class="footer">
       <drafted-player-progress-meter
         :players="players"
-        :denominator="180">
+        :denominator="120">
       </drafted-player-progress-meter>
       <afl-club-drafted-player-count :players="players"></afl-club-drafted-player-count>
     </div>

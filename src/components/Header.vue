@@ -8,13 +8,7 @@
         <router-link to="/draftorder">Drafted</router-link>
       </li>
       <li>
-        <router-link to="/club/Austins">Austins</router-link>
-      </li>
-      <li>
         <router-link to="/club/Cheetahs">Cheetahs</router-link>
-      </li>
-      <li>
-        <router-link to="/club/Fred">Fred</router-link>
       </li>
       <li>
         <router-link to="/club/Ruiboys">Ruiboys</router-link>

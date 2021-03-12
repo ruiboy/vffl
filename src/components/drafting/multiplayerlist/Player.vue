@@ -45,9 +45,7 @@
       Drafted by
       <select class="draftedBy" v-model="draftedBy">
         <option value=""></option>
-        <option value="Austins">Austins</option>
         <option value="Cheetahs">Cheetahs</option>
-        <option value="Fred">Fred</option>
         <option value="Ruiboys">Ruiboys</option>
         <option value="Slashers">Slashers</option>
         <option value="THC">THC</option>
@@ -57,9 +55,7 @@
       cents
     </div>
     <div class="team-selectors">
-      <button @click="draftedBy = 'Austins'">Aust</button>
       <button @click="draftedBy = 'Cheetahs'">Che</button>
-      <button @click="draftedBy = 'Fred'">Fred</button>
       <button @click="draftedBy = 'Ruiboys'">Rui</button>
       <button @click="draftedBy = 'Slashers'">Sla</button>
       <button @click="draftedBy = 'THC'">THC</button>
@@ -220,22 +216,20 @@
 
   .comment {
     width: 283px;
-    height: 100px;
+    height: 80px;
   }
 
   .cents {
     width: 50px;
   }
 
-  .pos-selectors,
-  .priority-selectors,
-  .team-selectors,
-  .money-selectors {
-    font-size: 0.8em;
-  }
-
+  .pos-selectors button,
+  .priority-selectors button,
+  .team-selectors button,
   .money-selectors button {
-    padding: 3px;
+    font-size: 0.8em;
+    margin: 0px;
+    padding: 1px 4px 1px 4px;
   }
 
   .close {

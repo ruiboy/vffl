@@ -58,8 +58,8 @@
     overflow: scroll;
   }
 
-  // put a line every 6th row
-  .player-list tr:nth-child(6n+0) td {
+  // put a line every 4th row
+  .player-list tr:nth-child(4n+0) td {
     border-bottom: thin gray solid;
   }
 
