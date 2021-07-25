@@ -1,6 +1,6 @@
 # vffl
 
-> FFL in Vue
+> FFL in Vue; uses REST api from thingmatron.
 
 ## Build Setup
 
