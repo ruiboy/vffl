@@ -1,6 +1,8 @@
 # vffl
 
-> FFL in Vue
+FFL in Vue
+
+Uses `thingmatron` REST backend.
 
 ## Build Setup
 

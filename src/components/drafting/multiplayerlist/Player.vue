@@ -46,6 +46,7 @@
       <select class="draftedBy" v-model="draftedBy">
         <option value=""></option>
         <option value="Cheetahs">Cheetahs</option>
+        <option value="KC">KFC</option>
         <option value="Ruiboys">Ruiboys</option>
         <option value="Slashers">Slashers</option>
         <option value="THC">THC</option>
@@ -56,6 +57,7 @@
     </div>
     <div class="team-selectors">
       <button @click="draftedBy = 'Cheetahs'">Che</button>
+      <button @click="draftedBy = 'KC'">KFC</button>
       <button @click="draftedBy = 'Ruiboys'">Rui</button>
       <button @click="draftedBy = 'Slashers'">Sla</button>
       <button @click="draftedBy = 'THC'">THC</button>

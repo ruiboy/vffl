@@ -29,7 +29,6 @@
             label: 'Player Cost',
             backgroundColor: 'orange',
             borderColor: 'lightgray',
-            showLine: true,
             data: counts.map(c => ({x: c.cents / 100, y: c.count}))
           }]
         },

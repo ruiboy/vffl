@@ -11,6 +11,9 @@
         <router-link to="/club/Cheetahs">Cheetahs</router-link>
       </li>
       <li>
+        <router-link to="/club/KC">KFC</router-link>
+      </li>
+      <li>
         <router-link to="/club/Ruiboys">Ruiboys</router-link>
       </li>
       <li>
