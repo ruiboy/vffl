@@ -97,7 +97,9 @@
 
   .player-list h1 {
     font-size: 0.8em;
-    margin: 0 0 0 4px;
+    padding: 0 0 0 4px;
+    margin: 0;
+    background-color: lightgray;
   }
 
   .player-list tbody {
@@ -112,8 +114,16 @@
     font-size: 0.7em;
   }
 
+  .aflClub,
+  .m,
+  .g,
+  .s {
+    border-right: thin dashed gray;
+  }
+
   .highlight {
     font-weight: bold;
+    text-decoration: underline black double;
   }
 
   .selected {

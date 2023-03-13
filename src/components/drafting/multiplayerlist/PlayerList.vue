@@ -1,4 +1,4 @@
-<template>
+w<template>
   <div class="player-list">
     <h1>{{ title }}</h1>
     <table>
@@ -10,14 +10,17 @@
           :title="(p.draftedBy ? p.draftedBy + ' for ' + p.cents/100 + ' ': '') + p.comment"
           @click="playerSelected(p)"
           :class="{
-            avoid: p.priority > 500,
-            want1: p.priority === 1,
-            want2: p.priority === 2,
-            want3: p.priority === 3,
-            want4: p.priority === 4,
-            want5: p.priority === 5,
-            mine:  p.draftedBy === 'Ruiboys',
-            other: p.draftedBy !== 'Ruiboys' && p.draftedBy
+            avoid:    p.priority > 500,
+            want1:    p.priority === 1,
+            want2:    p.priority === 2,
+            want3:    p.priority === 3,
+            want4:    p.priority === 4,
+            want5:    p.priority === 5,
+            cheetahs: p.draftedBy === 'Cheetahs',
+            kfc:      p.draftedBy === 'KC',
+            ruiboys:  p.draftedBy === 'Ruiboys',
+            slashers: p.draftedBy === 'Slashers',
+            thc:      p.draftedBy === 'THC'
           }">
         <td class="name"
             :class="{
@@ -108,10 +111,13 @@
 
   .player-list h1 {
     font-size: 0.8em;
-    margin: 0 0 0 4px;
+    padding: 0 0 0 4px;
+    margin: 0;
+    background-color: lightgray;
   }
 
   .player-list tbody {
+    line-height: 1.3em;
     // make only the table body scroll within a view port
     display: block;
     width: 300px;
@@ -123,12 +129,24 @@
     font-size: 0.7em;
   }
 
+  .aflClub,
+  .m,
+  .g,
+  .s {
+    border-right: thin dashed gray;
+  }
+
+  .games {
+    font-weight: lighter;
+  }
+
   .highlight {
     font-weight: bold;
+    text-decoration: underline black double;
   }
 
   .selected {
-    background-color: darkolivegreen;
+    background: darkolivegreen !important;
     color: yellow;
   }
 
@@ -152,18 +170,30 @@
     background-color: #fff699;;
   }
 
-  .mine {
-    background-color: royalblue;
-    color: gold;
-  }
-
   .avoid {
     background-color: gray;
     text-decoration: line-through;
   }
 
-  .other {
-    background-color: darkgray;
+  .cheetahs {
+    background: linear-gradient(to right, navy 2%, darkgray 2%);
+  }
+
+  .kfc {
+    background: linear-gradient(to right, red 2%, darkgray 2%);
+  }
+
+  .ruiboys {
+    background: linear-gradient(blue 50%, black 50%);
+    color: yellow;
+  }
+
+  .slashers {
+    background: linear-gradient(to right, greenyellow 2%, darkgray 2%);
+  }
+
+  .thc {
+    background: linear-gradient(to right, orange 2%, darkgray 2%);
   }
 
   .has-comment::after {

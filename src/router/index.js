@@ -4,6 +4,7 @@ import Drafting from "../components/drafting/Drafting";
 import DraftOrder from "../components/draftorder/DraftOrder";
 import Club from "../components/club/Club";
 import AddPlayer from "../components/addplayer/AddPlayer";
+import Util from "../components/util/Util";
 import Sandbox from "../components/sandbox/SandboxApp";
 
 Vue.use(Router)
@@ -26,6 +27,11 @@ export default new Router({
       path: '/addplayer',
       component: AddPlayer
     },
+    {
+      path: '/util',
+      component: Util
+    },
+
     {
       path: '/sandbox/:param1',
       props: true,

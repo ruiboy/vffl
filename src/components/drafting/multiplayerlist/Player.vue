@@ -1,11 +1,11 @@
 <template>
   <div class="player">
-    <div @click="toggleAflClubSetter">
+    <div class="title" @click="toggleAflClubSetter">
       <span class="name">{{player.name}}</span>
       <span class="club">{{player.aflClub}}</span>
     </div>
     <div>
-      Position:
+      Position
       <select class="pos" v-model="pos">
         <option value=""></option>
         <option value="K">Kicks</option>
@@ -16,7 +16,7 @@
         <option value="G">Goals</option>
         <option value="S">Star</option>
       </select>
-      Priority:
+      Priority
       <input class="priority" type="number" v-model="priority" maxlength="3"/>
     </div>
     <div class="pos-selectors">
@@ -35,10 +35,13 @@
       <button @click="priority = 4">4</button>
       <button @click="priority = 5">5</button>
       <button @click="priority = 1000; pos=''">Avoid</button>
+      <button @click="priority = 1000; pos=''; comment='Injured'" title="Injured">Inj</button>
+      <button @click="priority = 1000; pos=''; comment='Delisted'" title="Delisted">Dl</button>
+      <button @click="priority = 1000; pos=''; comment='Retired'" title="Retired">Rt</button>
       <button @click="priority = 500; pos=''">Clear</button>
     </div>
     <div>
-      Comments:
+      Comments
       <textarea class="comment" v-model.lazy="comment"/>
     </div>
     <div>
@@ -56,11 +59,11 @@
       cents
     </div>
     <div class="team-selectors">
-      <button @click="draftedBy = 'Cheetahs'">Che</button>
-      <button @click="draftedBy = 'KC'">KFC</button>
-      <button @click="draftedBy = 'Ruiboys'">Rui</button>
-      <button @click="draftedBy = 'Slashers'">Sla</button>
-      <button @click="draftedBy = 'THC'">THC</button>
+      <button class="cheetahs" @click="draftedBy = 'Cheetahs'">Che</button>
+      <button class="kfc" @click="draftedBy = 'KC'">KFC</button>
+      <button class="ruiboys" @click="draftedBy = 'Ruiboys'">Rui</button>
+      <button class="slashers" @click="draftedBy = 'Slashers'">Sla</button>
+      <button class="thc" @click="draftedBy = 'THC'">THC</button>
     </div>
     <div class="money-selectors">
       <button @click="cents += 100">$1</button>
@@ -73,6 +76,8 @@
       <button @click="cents += 70">70</button>
       <button @click="cents += 80">80</button>
       <button @click="cents += 90">90</button>
+    </div>
+    <div class="clear-selectors">
       <button @click="cents = 0; draftedBy =''">Clear</button>
     </div>
     <div id="afl-club-popup">
@@ -195,6 +200,40 @@
     margin: 5px;
   }
 
+  .player button {
+    background-color: lightgray;
+  }
+
+  .team-selectors button {
+    width: 45px;
+  }
+
+  .team-selectors button.cheetahs {
+    background-color: navy;
+    color: white;
+  }
+
+  .team-selectors button.kfc {
+    background: linear-gradient(red 50%, black 50%);
+    color: white;
+  }
+
+  .team-selectors button.ruiboys {
+    background: linear-gradient(blue 50%, black 50%);
+    color: yellow;
+  }
+
+  .team-selectors button.slashers {
+    background: linear-gradient(greenyellow 50%, yellow 50%);
+    color: black;
+  }
+
+  .team-selectors button.thc {
+    background-color: orange;
+    color: black;
+  }
+
+
   .name {
     font-size: 1.2em;
     font-weight: bold;
@@ -228,7 +267,8 @@
   .pos-selectors button,
   .priority-selectors button,
   .team-selectors button,
-  .money-selectors button {
+  .money-selectors button,
+  .clear-selectors button {
     font-size: 0.8em;
     margin: 0px;
     padding: 1px 4px 1px 4px;

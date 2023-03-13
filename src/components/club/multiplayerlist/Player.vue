@@ -77,6 +77,10 @@
     margin: 5px;
   }
 
+  .player button {
+    background-color: lightgray;
+  }
+  
   .name {
     font-size: 1.2em;
     font-weight: bold;

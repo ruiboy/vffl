@@ -26,6 +26,9 @@
         <router-link to="/addplayer">Add Player</router-link>
       </li>
       <li>
+        <router-link to="/util">Util</router-link>
+      </li>
+      <li>
         <router-link to="/sandbox/value123">Sandbox</router-link>
       </li>
     </ul>
@@ -39,7 +42,6 @@
   .header {
     background-color: darkblue;
     color: white;
-    padding-top: 10px;
   }
 
   .header a {
