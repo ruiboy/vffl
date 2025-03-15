@@ -59,7 +59,7 @@
   }
 
   // put a line every 4th row
-  .player-list tr:nth-child(5n+0) td {
+  .player-list tr:nth-child(4n+0) td {
     border-bottom: thin gray solid;
   }
 

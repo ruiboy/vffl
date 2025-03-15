@@ -16,8 +16,8 @@
         <option value="Gold Coast Suns">GCS</option>
         <option value="Greater Western Sydney">GWS</option>
         <option value="Hawthorn">Haw</option>
-        <option value="Kangaroos">NM</option>
         <option value="Melbourne">Melb</option>
+        <option value="Kangaroos">NM</option>
         <option value="Port Adelaide">Port</option>
         <option value="Richmond">Rich</option>
         <option value="St Kilda">SK</option>

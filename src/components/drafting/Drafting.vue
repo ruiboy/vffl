@@ -6,21 +6,6 @@
     </div>
     <div class="clubs">
       <drafting-club
-        :name="'KFC'"
-        :players="getClubPlayers('KC')"
-        class="kfc">
-      </drafting-club>
-      <drafting-club
-        :name="'THC'"
-        :players="getClubPlayers('THC')"
-        class="thc">
-      </drafting-club>
-      <drafting-club
-        :name="'Ruiboys'"
-        :players="getClubPlayers('Ruiboys')"
-        class="ruiboys">
-      </drafting-club>
-      <drafting-club
         :name="'Slashers'"
         :players="getClubPlayers('Slashers')"
         class="slashers">
@@ -29,6 +14,16 @@
         :name="'Cheetahs'"
         :players="getClubPlayers('Cheetahs')"
         class="cheetahs">
+      </drafting-club>
+      <drafting-club
+        :name="'Ruiboys'"
+        :players="getClubPlayers('Ruiboys')"
+        class="ruiboys">
+      </drafting-club>
+      <drafting-club
+        :name="'THC'"
+        :players="getClubPlayers('THC')"
+        class="thc">
       </drafting-club>
     </div>
     <div class="footer">

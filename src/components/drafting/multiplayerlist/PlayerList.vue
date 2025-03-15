@@ -17,7 +17,6 @@ w<template>
             want4:    p.priority === 4,
             want5:    p.priority === 5,
             cheetahs: p.draftedBy === 'Cheetahs',
-            kfc:      p.draftedBy === 'KC',
             ruiboys:  p.draftedBy === 'Ruiboys',
             slashers: p.draftedBy === 'Slashers',
             thc:      p.draftedBy === 'THC'

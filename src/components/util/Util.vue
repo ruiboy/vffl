@@ -6,10 +6,6 @@
         :players="getClubPlayers('Cheetahs')">
       </xml-club>
       <xml-club
-        :name="'KFC'"
-        :players="getClubPlayers('KC')">
-      </xml-club>
-      <xml-club
         :name="'Ruiboys'"
         :players="getClubPlayers('Ruiboys')">
       </xml-club>

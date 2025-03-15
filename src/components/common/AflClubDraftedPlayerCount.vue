@@ -10,8 +10,8 @@
     <span class="club">GCS</span><span :data-count="playerCount['Gold Coast Suns'] || 0" class="count">{{playerCount['Gold Coast Suns'] || 0}}</span>
     <span class="club">GWS</span><span :data-count="playerCount['Greater Western Sydney'] || 0" class="count">{{playerCount['Greater Western Sydney'] || 0}}</span>
     <span class="club">Haw</span><span :data-count="playerCount['Hawthorn'] || 0" class="count">{{playerCount['Hawthorn'] || 0}}</span>
-    <span class="club">NM</span><span :data-count="playerCount['Kangaroos'] || 0" class="count">{{playerCount['Kangaroos'] || 0}}</span>
     <span class="club">Melb</span><span :data-count="playerCount['Melbourne'] || 0" class="count">{{playerCount['Melbourne'] || 0}}</span>
+    <span class="club">NM</span><span :data-count="playerCount['Kangaroos'] || 0" class="count">{{playerCount['Kangaroos'] || 0}}</span>
     <span class="club">Port</span><span :data-count="playerCount['Port Adelaide'] || 0" class="count">{{playerCount['Port Adelaide'] || 0}}</span>
     <span class="club">Rich</span><span :data-count="playerCount['Richmond'] || 0" class="count">{{playerCount['Richmond'] || 0}}</span>
     <span class="club">SK</span><span :data-count="playerCount['St Kilda'] || 0" class="count">{{playerCount['St Kilda'] || 0}}</span>

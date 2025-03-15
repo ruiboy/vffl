@@ -49,7 +49,6 @@
       <select class="draftedBy" v-model="draftedBy">
         <option value=""></option>
         <option value="Cheetahs">Cheetahs</option>
-        <option value="KC">KFC</option>
         <option value="Ruiboys">Ruiboys</option>
         <option value="Slashers">Slashers</option>
         <option value="THC">THC</option>
@@ -60,7 +59,6 @@
     </div>
     <div class="team-selectors">
       <button class="cheetahs" @click="draftedBy = 'Cheetahs'">Che</button>
-      <button class="kfc" @click="draftedBy = 'KC'">KFC</button>
       <button class="ruiboys" @click="draftedBy = 'Ruiboys'">Rui</button>
       <button class="slashers" @click="draftedBy = 'Slashers'">Sla</button>
       <button class="thc" @click="draftedBy = 'THC'">THC</button>
@@ -93,8 +91,8 @@
         <option value="Gold Coast Suns">GCS</option>
         <option value="Greater Western Sydney">GWS</option>
         <option value="Hawthorn">Haw</option>
-        <option value="Kangaroos">NM</option>
         <option value="Melbourne">Melb</option>
+        <option value="Kangaroos">NM</option>
         <option value="Port Adelaide">Port</option>
         <option value="Richmond">Rich</option>
         <option value="St Kilda">SK</option>
